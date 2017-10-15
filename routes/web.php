@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
+    Cache::forever('name', 'Kunal');
+    dd(Cache::get('name'));
     return view('welcome');
 });
