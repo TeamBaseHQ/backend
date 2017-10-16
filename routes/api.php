@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-use App\Http\Resources\BaseAPI;
+use Base\Http\Resources\BaseAPI;
 
 Route::get('/', function () {
     return new BaseAPI();
