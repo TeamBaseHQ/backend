@@ -11,8 +11,15 @@
     <link href="/css/app.css" rel="stylesheet">
 
     <style>
-        .passport-authorize .container {
-            margin-top: 30px;
+        body, html {
+            height: 100%;
+        }
+
+        .passport-authorize {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
         }
 
         .passport-authorize .scopes {
@@ -35,57 +42,70 @@
         .passport-authorize form {
             display: inline;
         }
+
+        .passport-authorize .logo {
+            display: block;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .passport-authorize .logo img {
+            width: 120px;
+        }
     </style>
 </head>
 <body class="passport-authorize">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Authorization Request
-                    </div>
-                    <div class="panel-body">
-                        <!-- Introduction -->
-                        <p><strong>{{ $client->name }}</strong> is requesting permission to access your account.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <a href="{{url('/')}}" class="logo">
+                <img src="{{asset('logo.svg')}}" alt="Base">
+            </a>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Authorization Request
+                </div>
+                <div class="panel-body">
+                    <!-- Introduction -->
+                    <p><strong>{{ $client->name }}</strong> is requesting permission to access your account.</p>
 
-                        <!-- Scope List -->
-                        @if (count($scopes) > 0)
-                            <div class="scopes">
-                                    <p><strong>This application will be able to:</strong></p>
+                    <!-- Scope List -->
+                    @if (count($scopes) > 0)
+                        <div class="scopes">
+                            <p><strong>This application will be able to:</strong></p>
 
-                                    <ul>
-                                        @foreach ($scopes as $scope)
-                                            <li>{{ $scope->description }}</li>
-                                        @endforeach
-                                    </ul>
-                            </div>
-                        @endif
-
-                        <div class="buttons">
-                            <!-- Authorize Button -->
-                            <form method="post" action="/oauth/authorize">
-                                {{ csrf_field() }}
-
-                                <input type="hidden" name="state" value="{{ $request->state }}">
-                                <input type="hidden" name="client_id" value="{{ $client->id }}">
-                                <button type="submit" class="btn btn-success btn-approve">Authorize</button>
-                            </form>
-
-                            <!-- Cancel Button -->
-                            <form method="post" action="/oauth/authorize">
-                                {{ csrf_field() }}
-                                {{ method_field('DELETE') }}
-
-                                <input type="hidden" name="state" value="{{ $request->state }}">
-                                <input type="hidden" name="client_id" value="{{ $client->id }}">
-                                <button class="btn btn-danger">Cancel</button>
-                            </form>
+                            <ul>
+                                @foreach ($scopes as $scope)
+                                    <li>{{ $scope->description }}</li>
+                                @endforeach
+                            </ul>
                         </div>
+                    @endif
+
+                    <div class="buttons">
+                        <!-- Authorize Button -->
+                        <form method="post" action="/oauth/authorize">
+                            {{ csrf_field() }}
+
+                            <input type="hidden" name="state" value="{{ $request->state }}">
+                            <input type="hidden" name="client_id" value="{{ $client->id }}">
+                            <button type="submit" class="btn btn-success btn-approve">Authorize</button>
+                        </form>
+
+                        <!-- Cancel Button -->
+                        <form method="post" action="/oauth/authorize">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+
+                            <input type="hidden" name="state" value="{{ $request->state }}">
+                            <input type="hidden" name="client_id" value="{{ $client->id }}">
+                            <button class="btn btn-danger">Cancel</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 </html>
