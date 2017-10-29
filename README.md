@@ -38,6 +38,7 @@ Backend for the Base app.
 - Color
 - Description
 - User (Creator)
+- NotificationMeta
 - Type (Private | Public | Direct)
 
 ### Thread
