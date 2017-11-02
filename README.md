@@ -26,13 +26,20 @@ Backend for the Base app.
 ### Team
 - ID
 - Name
+- Slug
 - Picture
 - Description
 - Creator (User)
 - Invitation Code
 
+### TeamMember 
+- ID
+- User
+- Team
+
 ### Channel
 - ID 
+- Slug
 - Name
 - Team
 - Color
@@ -42,16 +49,20 @@ Backend for the Base app.
 - Type (Private | Public | Direct)
 
 ### Thread
-- ID 
+- ID
+- Slug 
 - Subject
 - Channel
 - Description
 
 ### Message
-- ID 
+- ID
+- Slug 
+- Type
+- Meta
+- Thread
 - Content
-- Channel
-- Sender (User)
+- Sender (User | Application)
 
 ### File
 - ID
@@ -77,6 +88,13 @@ Backend for the Base app.
 - User
 - Message 
 
+### Invitation
+- ID
+- Team
+- Email
+- Message
+- Is Accepted
+
 ### Integration
 - ID 
 - Channel  
@@ -99,12 +117,6 @@ Backend for the Base app.
 - Value
 - Preference
 
-### Invitation
-- ID
-- Team
-- Email
-- Is Accepted
-
 ## Relationships
 
 #### User Teams
@@ -114,6 +126,10 @@ Backend for the Base app.
 #### User Created Teams
 - A User (creator) has many Team
 - A Team belongs to a User (creator)
+
+### Team Members
+- A Team belongs to many User
+- A User belongs to many Team
 
 #### Team Channels
 - A Team has many Channel
