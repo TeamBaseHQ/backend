@@ -48,12 +48,20 @@ Backend for the Base app.
 - NotificationMeta
 - Type (Private | Public | Direct)
 
+### ChannelMember 
+- ID
+- User
+- Channel
+- Last Viewed At
+- Messages Viewed
+
 ### Thread
 - ID
-- Slug 
-- Subject
+- Slug
 - Channel
+- Subject
 - Description
+- NotificationMeta 
 
 ### Message
 - ID
@@ -75,13 +83,6 @@ Backend for the Base app.
 - ID
 - File
 - Message
-
-### ChannelMember 
-- ID
-- User
-- Channel
-- Last Viewed At
-- Messages Viewed
 
 ### Star
 - ID
