@@ -7,6 +7,12 @@ Route::get('/', function () {
     return new BaseAPI();
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'users'], function () {
+    Route::post('login', ['as' => 'login', 'uses' => "LoginController@login"]);
+});
+
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
