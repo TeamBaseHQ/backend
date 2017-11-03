@@ -58,7 +58,8 @@ class User extends Authenticatable
      */
     public function teams(): BelongsToMany
     {
-        return $this->belongsToMany(Team::class, 'team_members', 'user_id', 'team_id');
+        return $this->belongsToMany(Team::class, 'team_members', 'user_id', 'team_id')
+            ->withTimestamps();
     }
 
     /**
@@ -68,7 +69,9 @@ class User extends Authenticatable
      */
     public function channels(): BelongsToMany
     {
-        return $this->belongsToMany(Channel::class, 'channel_members', 'user_id', 'channel_id');
+        return $this->belongsToMany(Channel::class, 'channel_members', 'user_id', 'channel_id')
+            ->withPivot('last_viewed_at', 'messages_viewed')
+            ->withTimestamps();
     }
 
     /**
@@ -98,6 +101,7 @@ class User extends Authenticatable
      */
     public function starredMessages(): BelongsToMany
     {
-        return $this->belongsToMany(Message::class, "stars", "user_id", "message_id");
+        return $this->belongsToMany(Message::class, "stars", "user_id", "message_id")
+            ->withTimestamps();
     }
 }

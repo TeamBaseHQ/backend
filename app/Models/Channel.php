@@ -52,7 +52,9 @@ class Channel extends Model
      */
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'channel_member', 'channel_id', 'user_id');
+        return $this->belongsToMany(User::class, 'channel_member', 'channel_id', 'user_id')
+            ->withPivot('last_viewed_at', 'messages_viewed')
+            ->withTimestamps();
     }
 
     /**
