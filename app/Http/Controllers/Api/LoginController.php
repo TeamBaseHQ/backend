@@ -32,7 +32,23 @@ class LoginController extends Controller
     {
         $email = $request->get('email');
         $password = $request->get('password');
+        $client_id = $request->get('client_id');
+        $client_secret = $request->get('client_secret');
 
-        return response($this->loginProxy->attemptLogin($email, $password));
+        return response($this->loginProxy->attemptLogin($client_id, $client_secret, $email, $password));
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function refresh(Request $request)
+    {
+        $client_id = $request->get('client_id');
+        $refresh_token = $request->get('refresh_token');
+        $client_secret = $request->get('client_secret');
+
+        return response($this->loginProxy->attemptRefresh($client_id, $client_secret, $refresh_token));
     }
 }
