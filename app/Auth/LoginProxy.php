@@ -10,16 +10,33 @@ class LoginProxy
 {
     const REFRESH_TOKEN = 'refreshToken';
 
+    /**
+     * @var \Optimus\ApiConsumer\Router
+     */
     private $apiConsumer;
 
+    /**
+     * @var mixed
+     */
     private $auth;
 
+    /**
+     * @var mixed
+     */
     private $cookie;
 
+    /**
+     * @var mixed
+     */
     private $db;
 
     private $request;
 
+    /**
+     * LoginProxy constructor.
+     *
+     * @param \Illuminate\Foundation\Application $app
+     */
     public function __construct(Application $app)
     {
         $this->apiConsumer = $app->make('apiconsumer');
@@ -36,6 +53,7 @@ class LoginProxy
      * @param string $password
      *
      * @return array
+     * @throws \Exception
      */
     public function attemptLogin($email, $password)
     {
@@ -71,6 +89,7 @@ class LoginProxy
      * @param array  $data      the data to send to the server
      *
      * @return array
+     * @throws \Exception
      */
     public function proxy($grantType, array $data = [])
     {
