@@ -3,6 +3,7 @@
 namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Thread extends Model
 {
@@ -21,4 +22,14 @@ class Thread extends Model
     protected $fillable = [
         'name', 'description', 'channel_id', 'user_id', 'notification_meta'
     ];
+
+    /**
+     * Owner of the Thread.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, "user_id");
+    }
 }

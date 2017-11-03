@@ -69,4 +69,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Channel::class, 'channel_members', 'user_id', 'channel_id');
     }
+
+
+    /**
+     * Threads created by the User.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function createdThreads(): HasMany
+    {
+        return $this->hasMany(Thread::class, "user_id");
+    }
 }
