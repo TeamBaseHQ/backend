@@ -43,4 +43,14 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class, "user_id");
     }
+
+    /**
+     * Thread Messages.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages(): HasMany
+    {
+        return $this->hasMany(Message::class, "message_id");
+    }
 }
