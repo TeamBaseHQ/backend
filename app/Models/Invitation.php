@@ -3,6 +3,7 @@
 namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Invitation extends Model
 {
@@ -21,4 +22,14 @@ class Invitation extends Model
     protected $fillable = [
         'email', 'message', 'team_id'
     ];
+
+    /**
+     * Team, the invitation belongs to.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, "team_id");
+    }
 }

@@ -54,4 +54,14 @@ class Team extends Model
     {
         return $this->hasMany(Channel::class, "team_id");
     }
+
+    /**
+     * Team Invitations.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function invitations(): HasMany
+    {
+        return $this->hasMany(Invitation::class, "team_id");
+    }
 }
