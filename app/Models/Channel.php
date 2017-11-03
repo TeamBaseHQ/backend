@@ -5,6 +5,7 @@ namespace Base\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Channel extends Model
 {
@@ -52,5 +53,15 @@ class Channel extends Model
     public function members(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'channel_member', 'channel_id', 'user_id');
+    }
+
+    /**
+     * Channel Threads.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function threads(): HasMany
+    {
+        return $this->hasMany(Thread::class, "thread_id");
     }
 }
