@@ -90,4 +90,14 @@ class User extends Authenticatable
     {
         return $this->morphMany(Message::class, 'sender');
     }
+
+    /**
+     * Messages starred by the User.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function starredMessages(): BelongsToMany
+    {
+        return $this->belongsToMany(Message::class, "stars", "user_id", "message_id");
+    }
 }
