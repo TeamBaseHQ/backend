@@ -1,9 +1,9 @@
 <?php
 
-namespace Base\Models;
+namespace Base;
 
-use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use RecursiveDirectoryIterator;
 
 abstract class Helpers
 {
