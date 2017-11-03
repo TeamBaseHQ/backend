@@ -1,17 +1,17 @@
 <?php
 
-namespace Base;
+namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PreferenceCategory extends Model
+class Thread extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = "preference_categories";
+    protected $table = "threads";
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +19,6 @@ class PreferenceCategory extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name', 'description', 'channel_id', 'user_id', 'notification_meta'
     ];
 }

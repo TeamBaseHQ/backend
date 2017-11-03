@@ -1,17 +1,17 @@
 <?php
 
-namespace Base;
+namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Invitation extends Model
+class Team extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = "invitations";
+    protected $table = "teams";
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +19,6 @@ class Invitation extends Model
      * @var array
      */
     protected $fillable = [
-        'email', 'message', 'team_id'
+        'name', 'description', 'invitation_code', 'user_id'
     ];
 }

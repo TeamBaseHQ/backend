@@ -1,17 +1,17 @@
 <?php
 
-namespace Base;
+namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Star extends Model
+class Message extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = "stars";
+    protected $table = "messages";
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +19,6 @@ class Star extends Model
      * @var array
      */
     protected $fillable = [
-        'message_id', 'user_id'
+        'content', 'type', 'thread_id', 'sender_type', 'sender_id', 'meta'
     ];
 }

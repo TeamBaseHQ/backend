@@ -1,17 +1,17 @@
 <?php
 
-namespace Base;
+namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Thread extends Model
+class Invitation extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = "threads";
+    protected $table = "invitations";
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +19,6 @@ class Thread extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'channel_id', 'user_id', 'notification_meta'
+        'email', 'message', 'team_id'
     ];
 }

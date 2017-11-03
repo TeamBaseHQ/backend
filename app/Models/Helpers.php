@@ -1,6 +1,6 @@
 <?php
 
-namespace Base;
+namespace Base\Models;
 
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
