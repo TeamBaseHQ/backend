@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Optimus\ApiConsumer\Provider\LaravelServiceProvider::class,
 
         /*
          * Application Service Providers...
