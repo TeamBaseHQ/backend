@@ -21,4 +21,14 @@ class CustomPreference extends Model
     protected $fillable = [
         'value', 'owner_id', 'owner_type', 'preference_id'
     ];
+
+    /**
+     * Preference.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function preference()
+    {
+        return $this->belongsTo(Preference::class, "preference_id");
+    }
 }

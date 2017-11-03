@@ -3,6 +3,7 @@
 namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Preference extends Model
 {
@@ -30,5 +31,15 @@ class Preference extends Model
     public function category()
     {
         return $this->belongsTo(PreferenceCategory::class, "preference_category_id");
+    }
+
+    /**
+     * Custom Preferences.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function customPreferences(): HasMany
+    {
+        return $this->hasMany(CustomPreference::class, "preference_id");
     }
 }
