@@ -8,8 +8,6 @@ use Illuminate\Foundation\Application;
 
 class LoginProxy
 {
-    const REFRESH_TOKEN = 'refreshToken';
-
     /**
      * @var \Optimus\ApiConsumer\Router
      */
@@ -23,14 +21,7 @@ class LoginProxy
     /**
      * @var mixed
      */
-    private $cookie;
-
-    /**
-     * @var mixed
-     */
     private $db;
-
-    private $request;
 
     /**
      * LoginProxy constructor.
@@ -41,9 +32,7 @@ class LoginProxy
     {
         $this->apiConsumer = $app->make('apiconsumer');
         $this->auth = $app->make('auth');
-        $this->cookie = $app->make('cookie');
         $this->db = $app->make('db');
-        $this->request = $app->make('request');
     }
 
     /**
@@ -55,12 +44,15 @@ class LoginProxy
      * @return array
      * @throws \Exception
      */
-    public function attemptLogin($email, $password)
+    public function attemptLogin($client_id, $client_secret, $email, $password)
     {
         $user = User::where('email', $email)->first();
 
         if (!is_null($user)) {
             return $this->proxy('password', [
+                'client_id' => $client_id,
+                'client_secret' => $client_secret,
+            ], [
                 'username' => $email,
                 'password' => $password
             ]);
@@ -70,33 +62,19 @@ class LoginProxy
     }
 
     /**
-     * Attempt to refresh the access token used a refresh token that
-     * has been saved in a cookie.
-     */
-    public function attemptRefresh()
-    {
-        $refreshToken = $this->request->cookie(self::REFRESH_TOKEN);
-
-        return $this->proxy('refresh_token', [
-            'refresh_token' => $refreshToken
-        ]);
-    }
-
-    /**
      * Proxy a request to the OAuth server.
      *
      * @param string $grantType what type of grant type should be proxied
+     * @param array  $clientData
      * @param array  $data      the data to send to the server
      *
      * @return array
      * @throws \Exception
      */
-    public function proxy($grantType, array $data = [])
+    public function proxy($grantType, array $clientData = [], array $data = [])
     {
-        $data = array_merge($data, [
-            'client_id'     => env('PASSWORD_CLIENT_ID'),
-            'client_secret' => env('PASSWORD_CLIENT_SECRET'),
-            'grant_type'    => $grantType
+        $data = array_merge($data, $clientData, [
+            'grant_type' => $grantType
         ]);
 
         $response = $this->apiConsumer->post('/oauth/token', $data);
@@ -107,21 +85,31 @@ class LoginProxy
 
         $data = json_decode($response->getContent());
 
-        // Create a refresh token cookie
-        $this->cookie->queue(
-            self::REFRESH_TOKEN,
-            $data->refresh_token,
-            864000,
-            null,
-            null,
-            false,
-            true
-        );
-
         return [
             'access_token' => $data->access_token,
-            'expires_in' => $data->expires_in
+            'expires_in' => $data->expires_in,
+            'refresh_token' => $data->refresh_token,
         ];
+    }
+
+    /**
+     * Attempt to refresh the access token used a refresh token that
+     * has been saved in a cookie.
+     *
+     * @param string $client_id
+     * @param string $client_secret
+     * @param string $refreshToken
+     *
+     * @return array
+     */
+    public function attemptRefresh($client_id, $client_secret, $refreshToken)
+    {
+        return $this->proxy('refresh_token', [
+            'client_id' => $client_id,
+            'client_secret' => $client_secret,
+        ], [
+            'refresh_token' => $refreshToken
+        ]);
     }
 
     /**
@@ -140,7 +128,5 @@ class LoginProxy
             ]);
 
         $accessToken->revoke();
-
-        $this->cookie->queue($this->cookie->forget(self::REFRESH_TOKEN));
     }
 }
