@@ -35,6 +35,16 @@ class Channel extends Model
     }
 
     /**
+     * Owner of the Channel.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, "user_id");
+    }
+
+    /**
      * Channel Members.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

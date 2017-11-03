@@ -2,11 +2,11 @@
 
 namespace Base\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -38,6 +38,16 @@ class User extends Authenticatable
     public function createdTeams(): HasMany
     {
         return $this->hasMany(Team::class, "user_id");
+    }
+
+    /**
+     * Channels created by the User.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function createdChannels(): HasMany
+    {
+        return $this->hasMany(Channel::class, "user_id");
     }
 
     /**
