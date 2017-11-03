@@ -1,8 +1,9 @@
 <?php
 
-namespace Base;
+namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Channel extends Model
 {
@@ -21,4 +22,14 @@ class Channel extends Model
     protected $fillable = [
         'name', 'description', 'type', 'team_id', 'user_id', 'color', 'notification_meta'
     ];
+
+    /**
+     * Team of the Channel.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function team(): BelongsTo
+    {
+        return $this->belongsTo(Team::class, "team_id");
+    }
 }
