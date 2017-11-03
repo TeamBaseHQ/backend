@@ -191,3 +191,67 @@ Backend for the Base app.
 #### Team Invitations
 - A Team has many Invitation
 - A Invitation belongs to a Team
+
+
+## Endpoints
+-------------------
+
+#### User
+- Create: `POST /users`
+- Log in: `POST /users/auth`
+- Show: `GET /users/{id}`
+- Update: `PATCH /users/{id}`
+
+#### Team
+- Create: `POST /teams`
+- List: `GET /teams`
+- Show: `GET /teams/{id}`
+- Update: `PATCH /teams/{id}`
+- Delete: `DELETE /teams/{id}`
+- Members
+    - List: `GET /teams/{id}/members`
+    - Add: `POST /teams/{id}/members`
+    - Show: `GET /teams/{id}/members/{uid}`
+    - Remove: `DELETE /teams/{id}/members/{uid}`
+
+#### Channel
+- Create: `POST /teams/{id}/channels`
+- List: `GET /teams/{id}/channels`
+- Show: `GET /teams/{id}/channels/{cid}`
+- Update: `PATCH /teams/{id}/channels/{cid}`
+- Delete: `DELETE /teams/{id}/channels/{cid}`
+- Members
+    - List: `GET /teams/{id}/channels/{cid}/members`
+    - Add: `POST /teams/{id}/channels/{cid}/members`
+    - Remove: `DELETE /teams/{id}/channels/{cid}/members/{uid}`
+
+#### Thread
+- Create: `POST /teams/{id}/channels/{cid}/threads`
+- List: `GET /teams/{id}/channels/{cid}/threads`
+- Show: `GET /teams/{id}/channels/{cid}/threads/{tid}`
+- Update: `PATCH /teams/{id}/channels/{cid}/threads/{tid}`
+- Delete: `DELETE /teams/{id}/channels/{cid}/threads/{tid}`
+
+#### Message
+- Create: `POST /teams/{id}/channels/{cid}/threads/{tid}/messages`
+- List: `GET /teams/{id}/channels/{cid}/threads/{tid}/messages`
+- Show: `GET /teams/{id}/channels/{cid}/threads/{tid}/messages/{mid}`
+- Update: `PATCH /teams/{id}/channels/{cid}/threads/{tid}/messages/{mid}`
+- Delete: `DELETE /teams/{id}/channels/{cid}/threads/{tid}/messages/{mid}`
+- Star
+    - Create: `POST /teams/{id}/channels/{cid}/threads/{tid}/messages/{mid}/star`
+    - Delete: `DELETE /teams/{id}/channels/{cid}/threads/{tid}/messages/{mid}/star`
+
+#### PreferenceCategory
+- List: `GET /preference-categories`
+- Show: `GET /preference-categories/{id}`
+
+#### Preference
+- List: `GET /preferences`
+- Show: `GET /preferences/{id}`
+
+#### CustomPreferences
+- List: `GET /teams/{id}/users/{uid}/preferences`
+- Add: `POST /teams/{id}/users/{uid}/preferences`
+- Show: `GET /teams/{id}/users/{uid}/preferences/{pid}`
+- Remove: `DELETE /teams/{id}/users/{uid}/preferences/{pid}`
