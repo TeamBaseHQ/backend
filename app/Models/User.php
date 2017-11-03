@@ -2,6 +2,7 @@
 
 namespace Base\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -37,5 +38,15 @@ class User extends Authenticatable
     public function createdTeams(): HasMany
     {
         return $this->hasMany(Team::class, "user_id");
+    }
+
+    /**
+     * Teams, the User is a Member of.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function teams(): BelongsToMany
+    {
+        return $this->belongsToMany(Team::class, 'team_members', 'user_id', 'team_id');
     }
 }

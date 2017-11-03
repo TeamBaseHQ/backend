@@ -4,6 +4,7 @@ namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Team extends Model
 {
@@ -31,5 +32,15 @@ class Team extends Model
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, "user_id");
+    }
+
+    /**
+     * Team Members.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function members(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'team_members', 'team_id', 'user_id');
     }
 }
