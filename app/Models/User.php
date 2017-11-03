@@ -5,6 +5,7 @@ namespace Base\Models;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -70,7 +71,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Channel::class, 'channel_members', 'user_id', 'channel_id');
     }
 
-
     /**
      * Threads created by the User.
      *
@@ -79,5 +79,15 @@ class User extends Authenticatable
     public function createdThreads(): HasMany
     {
         return $this->hasMany(Thread::class, "user_id");
+    }
+
+    /**
+     * Messages sent by the User.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function messages(): MorphMany
+    {
+        return $this->morphMany(Message::class, 'sender');
     }
 }

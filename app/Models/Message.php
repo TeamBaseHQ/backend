@@ -3,6 +3,7 @@
 namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Message extends Model
@@ -31,5 +32,15 @@ class Message extends Model
     public function thread(): BelongsTo
     {
         return $this->belongsTo(Message::class, "thread_id");
+    }
+
+    /**
+     * Sender of the Message.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function sender(): MorphTo
+    {
+        return $this->morphTo();
     }
 }
