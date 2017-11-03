@@ -49,4 +49,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Team::class, 'team_members', 'user_id', 'team_id');
     }
+
+    /**
+     * Channels, the User is a Member of.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function channels(): BelongsToMany
+    {
+        return $this->belongsToMany(Channel::class, 'channel_members', 'user_id', 'channel_id');
+    }
 }
