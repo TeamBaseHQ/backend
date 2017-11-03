@@ -112,10 +112,10 @@ Backend for the Base app.
 - Default Value
 - Preference Category
 
-### User Preference
+### Custom Preference
 - ID
-- User
 - Value
+- Owner
 - Preference
 
 ## Relationships
