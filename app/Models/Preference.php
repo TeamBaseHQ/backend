@@ -21,4 +21,14 @@ class Preference extends Model
     protected $fillable = [
         'name', 'data_type', 'default_value', 'preference_category_id'
     ];
+
+    /**
+     * Preference's Category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(PreferenceCategory::class, "preference_category_id");
+    }
 }
