@@ -3,6 +3,7 @@
 namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class CustomPreference extends Model
 {
@@ -21,6 +22,16 @@ class CustomPreference extends Model
     protected $fillable = [
         'value', 'owner_id', 'owner_type', 'preference_id'
     ];
+
+    /**
+     * Owner of the Preference.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function owner(): MorphTo
+    {
+        return $this->morphTo();
+    }
 
     /**
      * Preference.

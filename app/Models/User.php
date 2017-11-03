@@ -104,4 +104,14 @@ class User extends Authenticatable
         return $this->belongsToMany(Message::class, "stars", "user_id", "message_id")
             ->withTimestamps();
     }
+
+    /**
+     * User's Custom Preferences.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function customPreferences(): MorphMany
+    {
+        return $this->morphMany(CustomPreference::class, "owner");
+    }
 }
