@@ -2,14 +2,16 @@
 
 namespace Base\Listeners\User;
 
-use Base\Events\User\UserWasCreated;
+use Mail;
 use Base\Mail\ConfirmUser;
+use Base\Events\User\UserWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Mail;
 
-class SendConfirmationEmail
+class SendConfirmationEmail implements ShouldQueue
 {
+    use InteractsWithQueue;
+
     /**
      * Create the event listener.
      *
