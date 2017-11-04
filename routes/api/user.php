@@ -6,6 +6,7 @@ Route::group(['prefix' => 'users'], function () {
 
     Route::group(['middleware' => 'auth:api', 'namespace' => "User"], function () {
         Route::get('/{id}', ['as' => "show-user", 'uses' => "ShowUser"]);
+        Route::post('/', ['as' => "create-user", 'uses' => "CreateUser"]);
     });
 
 });
