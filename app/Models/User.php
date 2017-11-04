@@ -2,6 +2,7 @@
 
 namespace Base\Models;
 
+use Base\Scopes\VerifiedScope;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -30,6 +31,17 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    protected $casts = [
+        'is_verified' => 'boolean'
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new VerifiedScope());
+    }
 
     /**
      * Teams created by the User.
