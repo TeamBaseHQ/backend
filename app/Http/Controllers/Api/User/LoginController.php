@@ -1,12 +1,13 @@
 <?php
 
-namespace Base\Http\Controllers\Api;
+namespace Base\Http\Controllers\Api\User;
 
 use Base\Auth\LoginProxy;
 use Illuminate\Http\Request;
 use Base\Http\Controllers\Controller;
+use Base\Http\Controllers\Api\APIController;
 
-class LoginController extends Controller
+class LoginController extends APIController
 {
     /**
      * @var \Base\Auth\LoginProxy
