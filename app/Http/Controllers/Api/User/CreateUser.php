@@ -15,6 +15,8 @@ class CreateUser extends APIController
     {
         // Fetch data from request
         $data = $request->only(['name', 'email', 'password']);
+        // Hash the Password
+        $data['password'] = bcrypt($data['password']);
         // Create user
         $user = User::create($data);
         // Fire Event
