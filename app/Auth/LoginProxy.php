@@ -4,6 +4,7 @@ namespace Base\Auth;
 
 use Exception;
 use Base\Models\User;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Application;
 
 class LoginProxy
@@ -42,7 +43,7 @@ class LoginProxy
      * @param string $password
      *
      * @return array
-     * @throws \Exception
+     * @throws \Illuminate\Auth\AuthenticationException
      */
     public function attemptLogin($client_id, $client_secret, $email, $password)
     {
@@ -58,7 +59,7 @@ class LoginProxy
             ]);
         }
 
-        throw new Exception("Invalid Credentials.");
+        throw new AuthenticationException("Invalid Credentials.");
     }
 
     /**
@@ -69,7 +70,7 @@ class LoginProxy
      * @param array  $data      the data to send to the server
      *
      * @return array
-     * @throws \Exception
+     * @throws \Illuminate\Auth\AuthenticationException
      */
     public function proxy($grantType, array $clientData = [], array $data = [])
     {
@@ -80,7 +81,7 @@ class LoginProxy
         $response = $this->apiConsumer->post('/oauth/token', $data);
 
         if (!$response->isSuccessful()) {
-            throw new Exception("Invalid Credentials.");
+            throw new AuthenticationException("Unable to Authenticate.");
         }
 
         $data = json_decode($response->getContent());
