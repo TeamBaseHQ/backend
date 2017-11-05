@@ -2,16 +2,20 @@
 
 namespace Base\Models;
 
+use Base\Helpers;
+use Spatie\MediaLibrary\Media;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMediaConversions
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, HasMediaTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -113,5 +117,16 @@ class User extends Authenticatable
     public function customPreferences(): MorphMany
     {
         return $this->morphMany(CustomPreference::class, "owner");
+    }
+
+    /**
+     * Register Media Conversions.
+     *
+     * @param \Spatie\MediaLibrary\Media|null $media
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $conversions = config('media.conversions.display_picture');
+        Helpers::registerConversions($this, $conversions);
     }
 }
