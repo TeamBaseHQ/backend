@@ -7,6 +7,7 @@ Route::group(['prefix' => 'users', 'namespace' => "User"], function () {
 
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/{id}', ['as' => "show-user", 'uses' => "ShowUser"]);
+        Route::post('/picture', ['as' => "upload-user-picture", 'uses' => "UploadProfilePicture"]);
     });
 
 });
