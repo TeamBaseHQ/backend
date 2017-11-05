@@ -18,7 +18,7 @@ return [
      * This queue will be used to generate derived images.
      * Leave empty to use the default queue.
      */
-    'queue_name' => 'image-service',
+    'queue_name' => 'media',
 
     /*
      * The class name of the media model to be used.
