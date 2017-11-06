@@ -6,7 +6,7 @@ return [
      * The filesystems on which to store added files and derived images by default. Choose
      * one or more of the filesystems you configured in app/config/filesystems.php
      */
-    'default_filesystem' => 'media',
+    'default_filesystem' => env('DEFAULT_MEDIA_FILESYSTEM', 'media'),
 
     /*
      * The maximum file size of an item in bytes. Adding a file
@@ -46,7 +46,7 @@ return [
         /*
          * The domain that should be prepended when generating urls.
          */
-        'domain' => 'https://xxxxxxx.s3.amazonaws.com',
+        'domain' => 'https://d1u5hgvrxvmb7z.cloudfront.net/',
     ],
 
     'remote' => [
@@ -104,7 +104,7 @@ return [
      * The path where to store temporary files while performing image conversions.
      * If set to null, storage_path('medialibrary/temp') will be used.
      */
-    'temporary_directory_path' => null,
+    'temporary_directory_path' => storage_path('app/medialibrary/temp'),
 
     /*
      * FFMPEG & FFProbe binaries path, only used if you try to generate video
