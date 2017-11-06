@@ -1,30 +1,33 @@
 
 // Body
-$body-bg: #f5f8fa;
+$body-bg: #f9faff;
 
 // Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
-
+$base-border-color: darken($body-bg, 5%);
+$list-group-border: $base-border-color;
+$navbar-default-border: $base-border-color;
+$panel-default-border: $base-border-color;
+$panel-inner-border: $base-border-color;
 // Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
+$brand-primary: #5F6BEC;
+$brand-secondary: #2F314A;
+$brand-info: #63D5FF;
+$brand-success: #6CC27A;
+$brand-warning: #FFAA57;
+$brand-danger: #EA4040;
+
+// Colors
+$gray-base: #5F6283;
 
 // Typography
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: "Raleway", sans-serif;
+$font-family-sans-serif: "Open Sans", sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
-$text-color: #636b6f;
+$text-color: #5F6283;
 
 // Navbar
-$navbar-default-bg: #fff;
+$navbar-inverse-bg: $brand-secondary;
 
 // Buttons
 $btn-default-color: $text-color;
