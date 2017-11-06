@@ -1,0 +1,15 @@
+@import "~animate.css/source/_base.css";
+@import "~animate.css/source/fading_entrances/fadeInUp.css";
+@import "~animate.css/source/zooming_entrances/zoomIn.css";
+
+
+@keyframes fadeInRay {
+  0% {
+    opacity: 0;
+    background-position: 500% -800%;
+  }
+  100% {
+    opacity: 1;
+    background-position: 165% 100px;
+  }
+}

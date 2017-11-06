@@ -1,0 +1,32 @@
+.home-page {
+  .hero {
+    min-height: calc(100vh - 100px);
+    background: #fff;
+
+    &.has-image {
+      background: #fff url(../../../../public/illustrations/rays.svg) no-repeat 165% 100px;
+      background-size: 1000px;
+      animation-name: fadeInRay;
+      animation-duration: 2s;
+
+      @media (max-width: $screen-md-min) {
+        background: #fff;
+      }
+    }
+  }
+  .hero-intro {
+    h1 {
+      font-weight: lighter;
+    }
+  }
+
+  .hero-image {
+    img {
+      max-width: 350px;
+      width: 100%;
+      height: auto;
+      animation-delay: 1s;
+      animation-duration: 2s;
+    }
+  }
+}

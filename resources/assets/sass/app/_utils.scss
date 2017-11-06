@@ -1,0 +1,19 @@
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.full-height {
+  min-height: calc(100vh);
+
+  &.has-navbar {
+    min-height: calc(100vh - 65px);
+  }
+}

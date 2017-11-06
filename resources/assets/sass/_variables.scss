@@ -1,6 +1,6 @@
 
 // Body
-$body-bg: #f9faff;
+$body-bg: #f3f4fd;
 
 // Borders
 $base-border-color: darken($body-bg, 5%);
@@ -24,7 +24,15 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $font-family-sans-serif: "Open Sans", sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
+$headings-line-height: 1.2;
 $text-color: #5F6283;
+
+$font-size-h1:            floor(($font-size-base * 3.1)) !default;
+$font-size-h2:            floor(($font-size-base * 2.7)) !default;
+$font-size-h3:            ceil(($font-size-base * 2.3)) !default;
+$font-size-h4:            ceil(($font-size-base * 1.9)) !default;
+$font-size-h5:            ceil(($font-size-base * 1.5)) !default;
+$font-size-h6:            ceil(($font-size-base * 1)) !default;
 
 // Navbar
 $navbar-inverse-bg: $brand-secondary;
