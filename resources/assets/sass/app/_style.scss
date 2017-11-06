@@ -2,6 +2,7 @@
   .hero {
     min-height: calc(100vh - 100px);
     background: #fff;
+    overflow: hidden;
 
     &.has-image {
       background: #fff url(../../../../public/illustrations/rays.svg) no-repeat 165% 100px;
@@ -17,16 +18,52 @@
   .hero-intro {
     h1 {
       font-weight: lighter;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-primary {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      margin-right: 1.2rem;
     }
   }
 
   .hero-image {
+    animation-delay: 1s;
+    animation-duration: 2s;
+
     img {
       max-width: 350px;
       width: 100%;
       height: auto;
-      animation-delay: 1s;
+      animation-name: fly;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+      animation-play-state: running;
+      animation-delay: 3s;
       animation-duration: 2s;
+      animation-timing-function: ease-in-out;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      background: #000;
+      width: 300px;
+      height: 2px;
+      left: 50%;
+      margin-left: -150px;
+      margin-bottom: -30px;
+      filter: blur(9px);
+      animation-name: fadeIn;
+      animation-delay: 2s;
+      animation-duration: 1s;
+      animation-fill-mode: both;
     }
   }
 }

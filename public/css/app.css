@@ -22,6 +22,30 @@
   -webkit-animation-duration: .75s;
           animation-duration: .75s;
 }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+}
 @-webkit-keyframes fadeInUp {
   from {
     opacity: 0;
@@ -54,33 +78,35 @@
   -webkit-animation-name: fadeInUp;
           animation-name: fadeInUp;
 }
-@-webkit-keyframes zoomIn {
+@-webkit-keyframes slideInUp {
   from {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-            transform: scale3d(.3, .3, .3);
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    visibility: visible;
   }
 
-  50% {
-    opacity: 1;
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
 }
 
-@keyframes zoomIn {
+@keyframes slideInUp {
   from {
-    opacity: 0;
-    -webkit-transform: scale3d(.3, .3, .3);
-            transform: scale3d(.3, .3, .3);
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    visibility: visible;
   }
 
-  50% {
-    opacity: 1;
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
   }
 }
 
-.zoomIn {
-  -webkit-animation-name: zoomIn;
-          animation-name: zoomIn;
+.slideInUp {
+  -webkit-animation-name: slideInUp;
+          animation-name: slideInUp;
 }
 @charset "UTF-8";
 
@@ -8458,6 +8484,30 @@ button.close {
   }
 }
 
+@-webkit-keyframes fly {
+  0% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-5%);
+            transform: translateY(-5%);
+  }
+}
+
+@keyframes fly {
+  0% {
+    -webkit-transform: translateY(0%);
+            transform: translateY(0%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-5%);
+            transform: translateY(-5%);
+  }
+}
+
 .flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8487,6 +8537,7 @@ button.close {
 .home-page .hero {
   min-height: calc(100vh - 100px);
   background: #fff;
+  overflow: hidden;
 }
 
 .home-page .hero.has-image {
@@ -8506,15 +8557,65 @@ button.close {
 
 .home-page .hero-intro h1 {
   font-weight: lighter;
+  margin-bottom: 1.5rem;
+}
+
+.home-page .hero-intro p {
+  margin-bottom: 2.5rem;
+}
+
+.home-page .hero-intro .btn-primary {
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 1.2rem;
+}
+
+.home-page .hero-image {
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
 }
 
 .home-page .hero-image img {
   max-width: 350px;
   width: 100%;
   height: auto;
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
+  -webkit-animation-name: fly;
+          animation-name: fly;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-play-state: running;
+          animation-play-state: running;
+  -webkit-animation-delay: 3s;
+          animation-delay: 3s;
   -webkit-animation-duration: 2s;
           animation-duration: 2s;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+.home-page .hero-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  background: #000;
+  width: 300px;
+  height: 2px;
+  left: 50%;
+  margin-left: -150px;
+  margin-bottom: -30px;
+  -webkit-filter: blur(9px);
+          filter: blur(9px);
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
 }
 

@@ -15,8 +15,8 @@
                     <a class="btn btn-primary" href="#">Start Building</a>
                     <a class="btn btn-default" href="#">View Docs</a>
                 </div>
-                <div class="hero-image col-lg-6 col-md-6 hidden-sm hidden-xs text-center">
-                    <img class="animated zoomIn" src="{{ asset('illustrations/engine.svg') }}" alt="">
+                <div class="hero-image col-lg-6 col-md-6 hidden-sm hidden-xs text-center animated slideInUp">
+                    <img src="{{ asset('illustrations/engine.svg') }}" alt="">
                 </div>
             </div>
         </div>

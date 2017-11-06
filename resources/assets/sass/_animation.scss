@@ -1,7 +1,7 @@
 @import "~animate.css/source/_base.css";
+@import "~animate.css/source/fading_entrances/fadeIn.css";
 @import "~animate.css/source/fading_entrances/fadeInUp.css";
-@import "~animate.css/source/zooming_entrances/zoomIn.css";
-
+@import "~animate.css/source/sliding_entrances/slideInUp.css";
 
 @keyframes fadeInRay {
   0% {
@@ -11,5 +11,14 @@
   100% {
     opacity: 1;
     background-position: 165% 100px;
+  }
+}
+
+@keyframes fly {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-5%);
   }
 }
