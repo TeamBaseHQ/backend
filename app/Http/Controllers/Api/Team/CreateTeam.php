@@ -12,15 +12,16 @@ class CreateTeam extends APIController
 {
     public function __invoke(CreateTeamRequest $request)
     {
+        $currentUser = $request->user();
         // Fetch data from request
         $data = $request->only(['name', 'description']);
         // Generate Invitation Code
         $data['invitation_code'] = $data['name'] . "-" . str_random(20);
 
         // Create team
-        $team = $request->user()->createdTeams()->create($data);
+        $team = $currentUser->createdTeams()->create($data);
         // Add the User to the Team as a member
-        $team->members()->attach($request->user()->id);
+        $team->members()->attach($currentUser->id);
 
         // Fire Event
         event(new TeamWasCreated($team));
