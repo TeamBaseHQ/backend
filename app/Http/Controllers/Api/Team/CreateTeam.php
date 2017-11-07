@@ -1,0 +1,26 @@
+<?php
+
+namespace Base\Http\Controllers\Api\Team;
+
+use Base\Http\Requests\Team\CreateTeamRequest;
+use Base\Models\Team;
+use Base\Events\Team\TeamWasCreated;
+use Base\Http\Resources\TeamResource;
+use Base\Http\Controllers\Api\APIController;
+
+class CreateTeam extends APIController
+{
+    public function __invoke(CreateTeamRequest $request)
+    {
+        // Fetch data from request
+        $data = $request->only(['name', 'description']);
+        // Generate Invitation Code
+        $data['invitation_code'] = $data['name'] . "-" . str_random(20);
+        // Create team
+        $team = $request->user()->createdTeams()->create($data);
+        // Fire Event
+        event(new TeamWasCreated($team));
+        // Return response
+        return new TeamResource($team);
+    }
+}

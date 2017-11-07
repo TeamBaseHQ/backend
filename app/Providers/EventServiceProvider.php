@@ -16,6 +16,8 @@ class EventServiceProvider extends ServiceProvider
         'Base\Events\User\UserWasCreated' => [
             'Base\Listeners\User\SendConfirmationEmail',
         ],
+        'Base\Events\Team\TeamWasCreated' => [
+        ],
     ];
 
     /**
