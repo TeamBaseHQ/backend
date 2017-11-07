@@ -35,6 +35,10 @@ class User extends Authenticatable implements HasMediaConversions
         'password', 'remember_token',
     ];
 
+    protected $casts = [
+      "is_verified" => "boolean"
+    ];
+
     /**
      * Teams created by the User.
      *
