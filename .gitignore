@@ -2,6 +2,8 @@
 /public/hot
 /public/storage
 /storage/*.key
+/storage/debugbar
+/storage/medialibrarys
 /vendor
 /.idea
 /.vagrant
