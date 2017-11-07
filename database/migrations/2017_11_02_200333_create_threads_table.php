@@ -20,9 +20,9 @@ class CreateThreadsTable extends Migration
             $table->string('slug')->unique();
             $table->json('notification_meta')->nullable();
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('channel_id');
-            $table->foreign('channel_id')->references('id')->on('channels');
+            $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
             $table->timestamps();
         });
     }

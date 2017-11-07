@@ -19,7 +19,7 @@ class CreateInvitationsTable extends Migration
             $table->string('message');
             $table->boolean('is_accepted')->default(false);
             $table->unsignedInteger('team_id');
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }

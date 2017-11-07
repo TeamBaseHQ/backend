@@ -16,9 +16,9 @@ class CreateTeamMembersTable extends Migration
         Schema::create('team_members', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('team_id');
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

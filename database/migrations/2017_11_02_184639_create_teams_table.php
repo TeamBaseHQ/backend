@@ -20,7 +20,7 @@ class CreateTeamsTable extends Migration
             $table->string('slug')->unique();
             $table->string('invitation_code', 50)->default(null)->nullable();
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

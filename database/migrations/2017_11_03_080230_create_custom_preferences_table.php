@@ -18,9 +18,9 @@ class CreateCustomPreferencesTable extends Migration
             $table->string('value');
             $table->morphs('owner');
             $table->unsignedInteger('team_id');
-            $table->foreign('team_id')->references('id')->on('teams');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->unsignedInteger('preference_id');
-            $table->foreign('preference_id')->references('id')->on('preferences');
+            $table->foreign('preference_id')->references('id')->on('preferences')->onDelete('cascade');
             $table->timestamps();
         });
     }

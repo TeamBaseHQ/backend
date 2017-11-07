@@ -16,9 +16,9 @@ class CreateStarsTable extends Migration
         Schema::create('stars', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('message_id');
-            $table->foreign('message_id')->references('id')->on('messages');
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

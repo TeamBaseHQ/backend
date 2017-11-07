@@ -21,7 +21,7 @@ class CreateMessagesTable extends Migration
             $table->string('slug')->unique();
             $table->json('meta')->nullable();
             $table->unsignedInteger('thread_id');
-            $table->foreign('thread_id')->references('id')->on('threads');
+            $table->foreign('thread_id')->references('id')->on('threads')->onDelete('cascade');
             $table->timestamps();
         });
     }

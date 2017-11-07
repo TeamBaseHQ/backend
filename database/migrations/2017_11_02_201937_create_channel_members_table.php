@@ -18,9 +18,9 @@ class CreateChannelMembersTable extends Migration
             $table->timestamp('last_viewed_at')->nullable();
             $table->unsignedInteger('messages_viewed')->default(0);
             $table->unsignedInteger('channel_id');
-            $table->foreign('channel_id')->references('id')->on('channels');
+            $table->foreign('channel_id')->references('id')->on('channels')->onDelete('cascade');
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

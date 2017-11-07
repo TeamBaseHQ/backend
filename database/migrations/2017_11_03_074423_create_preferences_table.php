@@ -19,7 +19,7 @@ class CreatePreferencesTable extends Migration
             $table->string('default_value')->nullable();
             $table->string('data_type')->default('string');
             $table->unsignedInteger('preference_category_id');
-            $table->foreign('preference_category_id')->references('id')->on('preference_categories');
+            $table->foreign('preference_category_id')->references('id')->on('preference_categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
