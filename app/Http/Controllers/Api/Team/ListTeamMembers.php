@@ -2,12 +2,9 @@
 
 namespace Base\Http\Controllers\Api\Team;
 
-use Base\Http\Resources\UserCollection;
-use Base\Models\Team;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
-use Base\Http\Resources\TeamResource;
 use Base\Http\Controllers\Api\APIController;
+use Base\Http\Resources\UserCollection;
+use Illuminate\Http\Request;
 
 class ListTeamMembers extends APIController
 {
