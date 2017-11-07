@@ -33,10 +33,10 @@ class LoginController extends APIController
     {
         $email = $request->get('email');
         $password = $request->get('password');
-        $client_id = $request->get('client_id');
-        $client_secret = $request->get('client_secret');
+        $client_id = $request->header('X-CLIENT-ID');
+        $client_secret = $request->header('X-CLIENT-SECRET');
 
-        return response($this->loginProxy->attemptLogin($client_id, $client_secret, $email, $password));
+        return response(['data' => $this->loginProxy->attemptLogin($client_id, $client_secret, $email, $password)]);
     }
 
     /**
@@ -46,10 +46,10 @@ class LoginController extends APIController
      */
     public function refresh(Request $request)
     {
-        $client_id = $request->get('client_id');
-        $refresh_token = $request->get('refresh_token');
-        $client_secret = $request->get('client_secret');
+        $client_id = $request->header('X-CLIENT-ID');
+        $client_secret = $request->header('X-CLIENT-SECRET');
+        $refresh_token = $request->input('refresh_token');
 
-        return response($this->loginProxy->attemptRefresh($client_id, $client_secret, $refresh_token));
+        return response(['name' => $this->loginProxy->attemptRefresh($client_id, $client_secret, $refresh_token)]);
     }
 }
