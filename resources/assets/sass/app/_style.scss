@@ -33,8 +33,10 @@
   }
 
   .hero-image {
-    animation-delay: 1s;
-    animation-duration: 2s;
+    &.animated {
+      animation-delay: 1s;
+      animation-duration: 2s;
+    }
 
     img {
       max-width: 350px;

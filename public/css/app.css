@@ -8541,7 +8541,7 @@ button.close {
 }
 
 .home-page .hero.has-image {
-  background: #fff url(/fonts/rays.svg?9583b0a3f860b8403eb45377bf5bff01) no-repeat 165% 100px;
+  background: #fff url(/fonts/rays.svg?5df3ab01bcb36a2d59687d82bbd9c94c) no-repeat 165% 100px;
   background-size: 1000px;
   -webkit-animation-name: fadeInRay;
           animation-name: fadeInRay;
@@ -8570,7 +8570,7 @@ button.close {
   margin-right: 1.2rem;
 }
 
-.home-page .hero-image {
+.home-page .hero-image.animated {
   -webkit-animation-delay: 1s;
           animation-delay: 1s;
   -webkit-animation-duration: 2s;
