@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "02ab23b99ecad1591e891059060584c2",
+    "content-hash": "9e863ddad4f95d4ca319ac17fe614d5b",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.36.37",
+            "version": "3.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "a6d7fd9f32c63d018a6603a36174b4cb971fccd9"
+                "reference": "24031a1ffbcd26dea0e55662198a3f5454e02cff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/a6d7fd9f32c63d018a6603a36174b4cb971fccd9",
-                "reference": "a6d7fd9f32c63d018a6603a36174b4cb971fccd9",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/24031a1ffbcd26dea0e55662198a3f5454e02cff",
+                "reference": "24031a1ffbcd26dea0e55662198a3f5454e02cff",
                 "shasum": ""
             },
             "require": {
@@ -84,7 +84,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2017-11-03T16:39:35+00:00"
+            "time": "2017-11-07T00:13:20+00:00"
         },
         {
             "name": "defuse/php-encryption",
