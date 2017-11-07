@@ -2,11 +2,10 @@
 
 namespace Base\Http\Controllers\Api\User;
 
-use Base\Events\User\UserWasCreated;
-use Base\Http\Requests\CreateUserRequest;
-use Base\Mail\ConfirmUser;
 use Base\Models\User;
+use Base\Events\User\UserWasCreated;
 use Base\Http\Resources\UserResource;
+use Base\Http\Requests\CreateUserRequest;
 use Base\Http\Controllers\Api\APIController;
 
 class CreateUser extends APIController
