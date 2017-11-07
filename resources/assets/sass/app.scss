@@ -4,8 +4,5 @@
 @import "variables";
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
-// Animation
-@import "animation";
-// App Stylings
-@import "app/utils";
-@import "app/style";
+// App
+@import "app/all";
