@@ -9,6 +9,7 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
 
     Route::group(['prefix' => '/{slug}/members'], function () {
         Route::get('/', ['as' => "list-team-members", 'uses' => "ListTeamMembers"]);
+        Route::post('/', ['as' => "add-team-member", 'uses' => "AddTeamMember"]);
         Route::get('/{id}', ['as' => "show-team-member", 'uses' => "ShowTeamMember"]);
         Route::delete('/{id}', ['as' => "remove-team-member", 'uses' => "RemoveTeamMember"]);
     });
