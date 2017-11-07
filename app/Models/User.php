@@ -67,6 +67,7 @@ class User extends Authenticatable implements HasMediaConversions
     public function teams(): BelongsToMany
     {
         return $this->belongsToMany(Team::class, 'team_members', 'user_id', 'team_id')
+            ->as('association')
             ->withTimestamps();
     }
 
