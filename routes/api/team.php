@@ -5,4 +5,5 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
     Route::get('/', ['as' => "list-teams", 'uses' => "ListTeams"]);
     Route::get('/{slug}', ['as' => "show-team", 'uses' => "ShowTeam"]);
     Route::patch('/{slug}', ['as' => "update-team", 'uses' => "UpdateTeam"]);
+    Route::delete('/{slug}', ['as' => "delete-team", 'uses' => "DeleteTeam"]);
 });
