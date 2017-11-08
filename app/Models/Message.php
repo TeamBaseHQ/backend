@@ -25,6 +25,20 @@ class Message extends Model
     ];
 
     /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->slug = str_random(8) . "-" . $model->thread_id . "-" . str_random(8);
+        });
+    }
+
+    /**
      * Message's Thread.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
