@@ -2,16 +2,20 @@
 
 namespace Base\Http\Controllers\Api\Team\Channel\Thread;
 
+use Base\Models\Channel;
 use Base\Models\Team;
+use Base\Models\Thread;
 use Illuminate\Http\Request;
 use Base\Http\Controllers\Api\APIController;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class DeleteChannelThread extends APIController
 {
-    public function __invoke(Request $request, $slug, $chSlug, $id)
+    public function __invoke(Request $request, $slug, $chSlug, $thSlug)
     {
-        $team = $request->user()
+        $user = $request->user();
+
+        $team = $user
             ->teams()
             ->where('slug', $slug)
             ->first();
@@ -25,21 +29,21 @@ class DeleteChannelThread extends APIController
 
         throw_if(!$channel, (new ModelNotFoundException())->setModel(Channel::class, $chSlug));
 
-        $user_id = $id;
+        $thread = $channel
+            ->threads()
+            ->where("slug", $thSlug);
 
-        // If the Channel is Private
-        if ($channel->isPrivate()) {
-            $currentUserIsChannelOwner = $request->user()->id == $channel->user_id;
-            abort_unless($currentUserIsChannelOwner, 403, "You are not allowed to join or add members to this channel.");
+        // The current user is neither the creator of the Team and nor the Channel
+        if ($user->id !== $team->user_id && $user->id !== $channel->user_id) {
+            // Thus, in order to delete the thread, the user
+            // must be the creator of the thread.
+            $thread = $thread->where("user_id", $user->id);
         }
 
-        $member = $channel->members->find($user_id);
+        // Delete the Thread
+        $deleted = $thread->delete();
 
-        // Already a member
-        abort_unless($member, 500, "User is not a member of this channel.");
-
-        // Add User to the Channel
-        $channel->members()->detach($user_id);
+        abort_if(!$deleted, 403, "You cannot delete this thread.");
 
         return response("");
     }
