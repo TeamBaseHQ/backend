@@ -15,5 +15,6 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
 
     Route::group(['prefix' => '/{slug}/channels', 'namespace' => "Channel"], function () {
         Route::get('/', ['as' => "list-team-channels", 'uses' => "ListTeamChannels"]);
+        Route::post('/', ['as' => "create-team-channel", 'uses' => "CreateTeamChannel"]);
     });
 });
