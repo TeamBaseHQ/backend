@@ -38,7 +38,7 @@ class UpdateTeamChannel extends APIController
         // Fetch the Channel
         $channel = $channel->first();
 
-        throw_if(!$team, (new ModelNotFoundException())->setModel(Channel::class, $chSlug));
+        throw_if(!$channel, (new ModelNotFoundException())->setModel(Channel::class, $chSlug));
 
         // Prepare Data
         $data = $request->only(['name', 'description', 'color', 'is_private']);
