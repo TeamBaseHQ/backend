@@ -17,5 +17,6 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
         Route::get('/', ['as' => "list-team-channels", 'uses' => "ListTeamChannels"]);
         Route::post('/', ['as' => "create-team-channel", 'uses' => "CreateTeamChannel"]);
         Route::get('/{chSlug}', ['as' => "show-team-channel", 'uses' => "ShowTeamChannel"]);
+        Route::delete('/{chSlug}', ['as' => "delete-team-channel", 'uses' => "DeleteTeamChannel"]);
     });
 });
