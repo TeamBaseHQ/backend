@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Http\Controllers\Api\Team;
+namespace Base\Http\Controllers\Api\Team\Member;
 
 use Base\Models\Team;
 use Illuminate\Http\Request;
@@ -28,7 +28,7 @@ class AddTeamMember extends APIController
 
         $exists = $team->members->find($id);
 
-        abort_if($exists, 500, "You're already a member of this Team.");
+        abort_if($exists, 500, "The User is already a member of this Team.");
 
         $team->members()->attach($id);
 

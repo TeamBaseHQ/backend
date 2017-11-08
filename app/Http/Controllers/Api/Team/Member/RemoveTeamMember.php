@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Http\Controllers\Api\Team;
+namespace Base\Http\Controllers\Api\Team\Member;
 
 use Base\Models\Team;
 use Illuminate\Http\Request;
@@ -26,7 +26,7 @@ class RemoveTeamMember extends APIController
 
         // If the user is trying to remove themselves OR
         // if they're the creator of the Team, they can:
-        if ($id === $user->id || $team->user_id === $user->id) {
+        if ($id == $user->id || $team->user_id === $user->id) {
             // Remove the Member
             $members->detach($id);
             return response("");

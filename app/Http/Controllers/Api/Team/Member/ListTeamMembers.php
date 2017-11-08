@@ -1,6 +1,6 @@
 <?php
 
-namespace Base\Http\Controllers\Api\Team;
+namespace Base\Http\Controllers\Api\Team\Member;
 
 use Base\Http\Controllers\Api\APIController;
 use Base\Http\Resources\UserCollection;
