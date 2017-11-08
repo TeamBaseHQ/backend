@@ -30,6 +30,7 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
         Route::group(['prefix' => '/{chSlug}/threads', 'namespace' => "Thread"], function () {
             Route::post('/', ['as' => "add-channel-thread", 'uses' => "CreateChannelThread"]);
             Route::get('/', ['as' => "list-channel-threads", 'uses' => "ListChannelThreads"]);
+            Route::get('/{thSlugss}', ['as' => "show-channel-thread", 'uses' => "ShowChannelThread"]);
         });
     });
 });

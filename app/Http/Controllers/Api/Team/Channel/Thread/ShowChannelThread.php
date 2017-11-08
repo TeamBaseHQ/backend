@@ -3,16 +3,16 @@
 namespace Base\Http\Controllers\Api\Team\Channel\Thread;
 
 use Base\Models\Team;
+use Base\Models\Thread;
 use Base\Models\Channel;
-use Base\Models\User;
 use Illuminate\Http\Request;
-use Base\Http\Resources\UserResource;
+use Base\Http\Resources\ThreadResource;
 use Base\Http\Controllers\Api\APIController;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ShowChannelThread extends APIController
 {
-    public function __invoke(Request $request, $slug, $chSlug, $id)
+    public function __invoke(Request $request, $slug, $chSlug, $thSlug)
     {
         $team = $request->user()
             ->teams()
@@ -28,10 +28,13 @@ class ShowChannelThread extends APIController
 
         throw_if(!$channel, (new ModelNotFoundException())->setModel(Channel::class, $chSlug));
 
-        $member = $channel->members->find($id);
+        $thread = $channel
+            ->threads
+            ->where('slug', $thSlug)
+            ->first();
 
-        throw_if(!$member, (new ModelNotFoundException())->setModel(User::class, $id));
+        throw_if(!$thread, (new ModelNotFoundException())->setModel(Thread::class, $thSlug));
 
-        return new UserResource($member);
+        return new ThreadResource($thread);
     }
 }
