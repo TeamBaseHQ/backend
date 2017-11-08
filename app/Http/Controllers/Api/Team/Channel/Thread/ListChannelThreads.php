@@ -2,12 +2,12 @@
 
 namespace Base\Http\Controllers\Api\Team\Channel\Thread;
 
-use Base\Models\Channel;
 use Base\Models\Team;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Base\Models\Channel;
 use Illuminate\Http\Request;
-use Base\Http\Resources\UserCollection;
+use Base\Http\Resources\ThreadCollection;
 use Base\Http\Controllers\Api\APIController;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ListChannelThreads extends APIController
 {
@@ -27,8 +27,8 @@ class ListChannelThreads extends APIController
 
         throw_if(!$channel, (new ModelNotFoundException())->setModel(Channel::class, $chSlug));
 
-        $members = $channel->members;
+        $threads = $channel->threads;
 
-        return new UserCollection($members);
+        return new ThreadCollection($threads);
     }
 }
