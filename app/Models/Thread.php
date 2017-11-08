@@ -2,12 +2,15 @@
 
 namespace Base\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Thread extends Model
 {
+    use Sluggable;
+
     /**
      * The table associated with the model.
      *
@@ -21,8 +24,22 @@ class Thread extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'channel_id', 'user_id', 'notification_meta'
+        'subject', 'description', 'channel_id', 'user_id', 'notification_meta'
     ];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'subject'
+            ]
+        ];
+    }
 
     /**
      * Channel of the Thread.
