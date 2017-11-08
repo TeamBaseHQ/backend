@@ -26,5 +26,9 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
             Route::get('/{id}', ['as' => "show-channel-member", 'uses' => "ShowChannelMember"]);
             Route::delete('/{id}', ['as' => "remove-channel-member", 'uses' => "RemoveChannelMember"]);
         });
+
+        Route::group(['prefix' => '/{chSlug}/threads', 'namespace' => "Thread"], function () {
+            Route::post('/', ['as' => "add-channel-thread", 'uses' => "CreateChannelThread"]);
+        });
     });
 });
