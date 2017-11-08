@@ -46,6 +46,16 @@ class Channel extends Model
         ];
     }
 
+    public function isPublic()
+    {
+        return !$this->isPrivate();
+    }
+
+    public function isPrivate()
+    {
+        return $this->type === self::TYPE_PRIVATE;
+    }
+
     /**
      * Team of the Channel.
      *
