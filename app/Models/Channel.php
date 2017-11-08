@@ -3,12 +3,19 @@
 namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Channel extends Model
 {
+    use Sluggable;
+
+    const TYPE_PUBLIC = "public";
+
+    const TYPE_PRIVATE = "private";
+
     /**
      * The table associated with the model.
      *
@@ -24,6 +31,20 @@ class Channel extends Model
     protected $fillable = [
         'name', 'description', 'type', 'team_id', 'user_id', 'color', 'notification_meta'
     ];
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     /**
      * Team of the Channel.
@@ -52,7 +73,7 @@ class Channel extends Model
      */
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'channel_member', 'channel_id', 'user_id')
+        return $this->belongsToMany(User::class, 'channel_members', 'channel_id', 'user_id')
             ->withPivot('last_viewed_at', 'messages_viewed')
             ->withTimestamps();
     }
