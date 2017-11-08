@@ -26,7 +26,7 @@ class AddTeamMember extends APIController
             throw (new ModelNotFoundException())->setModel(Team::class, $slug);
         }
 
-        $exists = $team->members->find($id);
+        $exists = $team->members()->find($id);
 
         abort_if($exists, 500, "The User is already a member of this Team.");
 
