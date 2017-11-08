@@ -95,6 +95,6 @@ class Channel extends Model
      */
     public function threads(): HasMany
     {
-        return $this->hasMany(Thread::class, "thread_id");
+        return $this->hasMany(Thread::class, "channel_id");
     }
 }
