@@ -22,6 +22,7 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
 
         Route::group(['prefix' => '/{chSlug}/members', 'namespace' => "Member"], function () {
             Route::get('/', ['as' => "list-channel-members", 'uses' => "ListChannelMembers"]);
+            Route::get('/{id}', ['as' => "show-channel-member", 'uses' => "ShowChannelMember"]);
         });
     });
 });
