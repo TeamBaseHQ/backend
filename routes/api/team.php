@@ -30,9 +30,9 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
         Route::group(['prefix' => '/{chSlug}/threads', 'namespace' => "Thread"], function () {
             Route::post('/', ['as' => "add-channel-thread", 'uses' => "CreateChannelThread"]);
             Route::get('/', ['as' => "list-channel-threads", 'uses' => "ListChannelThreads"]);
-            Route::get('/{thSlugs}', ['as' => "show-channel-thread", 'uses' => "ShowChannelThread"]);
-            Route::patch('/{id}', ['as' => "update-channel-thread", 'uses' => "UpdateChannelThread"]);
-            Route::delete('/{id}', ['as' => "remove-channel-thread", 'uses' => "DeleteChannelThread"]);
+            Route::get('/{thSlug}', ['as' => "show-channel-thread", 'uses' => "ShowChannelThread"]);
+            Route::patch('/{thSlug}', ['as' => "update-channel-thread", 'uses' => "UpdateChannelThread"]);
+            Route::delete('/{thSlug}', ['as' => "remove-channel-thread", 'uses' => "DeleteChannelThread"]);
         });
     });
 });
