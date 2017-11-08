@@ -24,6 +24,7 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
             Route::post('/', ['as' => "add-channel-member", 'uses' => "AddChannelMember"]);
             Route::get('/', ['as' => "list-channel-members", 'uses' => "ListChannelMembers"]);
             Route::get('/{id}', ['as' => "show-channel-member", 'uses' => "ShowChannelMember"]);
+            Route::delete('/{id}', ['as' => "remove-channel-member", 'uses' => "RemoveChannelMember"]);
         });
     });
 });
