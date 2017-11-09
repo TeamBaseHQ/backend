@@ -2,6 +2,7 @@
 
 namespace Base\Http\Controllers\Api\Team\Channel\Member;
 
+use Base\Http\Resources\InputError;
 use Base\Models\Team;
 use Illuminate\Http\Request;
 use Base\Http\Controllers\Api\APIController;
@@ -36,7 +37,8 @@ class AddChannelMember extends APIController
         $member = $channel->members->find($user_id);
 
         // Already a member
-        abort_if($member, 500, "User is already a member of this channel.");
+        $errorMessage = "User is already a member of this channel.";
+        return InputError::build(["user_id" => [$errorMessage]]);
 
         // Add User to the Channel
         $channel->members()->attach($user_id);

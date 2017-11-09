@@ -2,6 +2,7 @@
 
 namespace Base\Http\Controllers\Api\Team\Member;
 
+use Base\Http\Resources\InputError;
 use Base\Models\Team;
 use Illuminate\Http\Request;
 use Base\Http\Controllers\Api\APIController;
@@ -28,7 +29,9 @@ class AddTeamMember extends APIController
 
         $exists = $team->members()->find($id);
 
-        abort_if($exists, 500, "The User is already a member of this Team.");
+        // Already a member
+        $errorMessage = "User is already a member of this channel.";
+        return InputError::build(["user_id" => [$errorMessage]]);
 
         $team->members()->attach($id);
 
