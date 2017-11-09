@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d42cf6b350bbcc4772668bc12b87617",
+    "content-hash": "35ba3d7d32c02a70e25ab3e0a66c6354",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -2638,6 +2638,63 @@
                 "rollbar"
             ],
             "time": "2017-09-19T00:20:37+00:00"
+        },
+        {
+            "name": "sebastiaanluca/laravel-conditional-providers",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastiaanluca/laravel-conditional-providers.git",
+                "reference": "d723af2faec59d35e8c6f78778de26806b8e6de5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastiaanluca/laravel-conditional-providers/zipball/d723af2faec59d35e8c6f78778de26806b8e6de5",
+                "reference": "d723af2faec59d35e8c6f78778de26806b8e6de5",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.4",
+                "php": "^7"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.4.2",
+                "phpunit/phpunit": "^6.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "SebastiaanLuca\\ConditionalProviders\\Providers\\ConditionalProvidersServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SebastiaanLuca\\ConditionalProviders\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sebastiaan Luca",
+                    "email": "hello@sebastiaanluca.com",
+                    "homepage": "https://www.sebastiaanluca.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Load Laravel service providers based on the current environment.",
+            "homepage": "https://github.com/sebastiaanluca/laravel-conditional-providers",
+            "keywords": [
+                "conditional",
+                "environment",
+                "laravel",
+                "service provider"
+            ],
+            "time": "2017-07-19T16:52:17+00:00"
         },
         {
             "name": "spatie/image",

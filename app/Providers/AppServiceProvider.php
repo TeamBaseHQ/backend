@@ -2,9 +2,7 @@
 
 namespace Base\Providers;
 
-use Barryvdh\Debugbar\Facade;
 use Illuminate\Support\ServiceProvider;
-use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,9 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->environment() !== 'production') {
-            $this->app->register(IdeHelperServiceProvider::class);
-            $this->app->alias('Debugbar', Facade::class);
-        }
+        //
     }
 }

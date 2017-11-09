@@ -180,6 +180,15 @@ return [
 
     ],
 
+    'local_providers' => [
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
+    ],
+
+    'production_providers' => [
+        Rollbar\Laravel\RollbarServiceProvider::class
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Class Aliases
@@ -228,5 +237,9 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+
+    'local_aliases' => [
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
+    ]
 
 ];
