@@ -3,14 +3,14 @@
 namespace Base\Http\Controllers\Api\Team;
 
 use Base\Models\Team;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Http\Request;
 use Base\Http\Resources\TeamResource;
+use Base\Http\Requests\UpdateTeamRequest;
 use Base\Http\Controllers\Api\APIController;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class UpdateTeam extends APIController
 {
-    public function __invoke(Request $request, $slug)
+    public function __invoke(UpdateTeamRequest $request, $slug)
     {
         $data = $request->only(['name', 'description']);
 
