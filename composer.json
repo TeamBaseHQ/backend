@@ -23,6 +23,7 @@
         "optimus/api-consumer": "0.2.*",
         "pda/pheanstalk": "~3.0",
         "predis/predis": "^1.1",
+        "rollbar/rollbar-laravel": "^2.2",
         "spatie/laravel-medialibrary": "^6.0.0"
     },
     "require-dev": {
