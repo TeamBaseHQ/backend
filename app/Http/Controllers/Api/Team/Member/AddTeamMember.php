@@ -29,9 +29,11 @@ class AddTeamMember extends APIController
 
         $exists = $team->members()->find($id);
 
-        // Already a member
-        $errorMessage = "User is already a member of this channel.";
-        return InputError::build(["user_id" => [$errorMessage]]);
+        if ($exists) {
+            // Already a member
+            $errorMessage = "User is already a member of this channel.";
+            return InputError::build(["user_id" => [$errorMessage]]);
+        }
 
         $team->members()->attach($id);
 
