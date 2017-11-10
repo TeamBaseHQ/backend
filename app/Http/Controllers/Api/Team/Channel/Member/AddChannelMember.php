@@ -36,9 +36,11 @@ class AddChannelMember extends APIController
 
         $member = $channel->members->find($user_id);
 
-        // Already a member
-        $errorMessage = "User is already a member of this channel.";
-        return InputError::build(["user_id" => [$errorMessage]]);
+        if ($member) {
+            // Already a member
+            $errorMessage = "User is already a member of this channel.";
+            return InputError::build(["user_id" => [$errorMessage]]);
+        }
 
         // Add User to the Channel
         $channel->members()->attach($user_id);
