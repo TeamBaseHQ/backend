@@ -13,6 +13,7 @@
     "require": {
         "php": ">=7.0.0",
         "aws/aws-sdk-php": "~3.0",
+        "barryvdh/laravel-cors": "^0.10.0",
         "cviebrock/eloquent-sluggable": "^4.3",
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "~3.3",
