@@ -68,6 +68,6 @@ class Thread extends Model
      */
     public function messages(): HasMany
     {
-        return $this->hasMany(Message::class, "message_id");
+        return $this->hasMany(Message::class, "thread_id");
     }
 }
