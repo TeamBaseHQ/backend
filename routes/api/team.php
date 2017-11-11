@@ -39,6 +39,7 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
                 Route::get('/', ['as' => "list-thread-messages", 'uses' => "ListThreadMessages"]);
                 Route::get('/{mSlug}', ['as' => "show-thread-message", 'uses' => "ShowThreadMessage"]);
                 Route::patch('/{mSlug}', ['as' => "update-thread-message", 'uses' => "UpdateThreadMessage"]);
+                Route::delete('/{mSlug}', ['as' => "delete-thread-message", 'uses' => "DeleteThreadMessage"]);
             });
         });
     });
