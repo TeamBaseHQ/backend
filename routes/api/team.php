@@ -38,6 +38,7 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
                 Route::post('/', ['as' => "create-thread-message", 'uses' => "CreateThreadMessage"]);
                 Route::get('/', ['as' => "list-thread-messages", 'uses' => "ListThreadMessages"]);
                 Route::get('/{mSlug}', ['as' => "show-thread-message", 'uses' => "ShowThreadMessage"]);
+                Route::patch('/{mSlug}', ['as' => "update-thread-message", 'uses' => "UpdateThreadMessage"]);
             });
         });
     });
