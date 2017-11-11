@@ -33,6 +33,10 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
             Route::get('/{thSlug}', ['as' => "show-channel-thread", 'uses' => "ShowChannelThread"]);
             Route::patch('/{thSlug}', ['as' => "update-channel-thread", 'uses' => "UpdateChannelThread"]);
             Route::delete('/{thSlug}', ['as' => "remove-channel-thread", 'uses' => "DeleteChannelThread"]);
+
+            Route::group(['prefix' => '/{thSlug}/messages', 'namespace' => "Message"], function () {
+                Route::post('/', ['as' => "create-thread-message", 'uses' => "CreateThreadMessage"]);
+            });
         });
     });
 });
