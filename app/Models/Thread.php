@@ -27,6 +27,21 @@ class Thread extends BaseModel
         'subject', 'description', 'channel_id', 'user_id', 'notification_meta'
     ];
 
+
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['owner'];
+
+    /**
+     * The relationship counts that should be eager loaded on every query.
+     *
+     * @var array
+     */
+    protected $withCount = [];
+
     /**
      * Return the sluggable configuration array for this model.
      *
