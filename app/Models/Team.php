@@ -37,13 +37,6 @@ class Team extends BaseModel
     protected $with = ['owner'];
 
     /**
-     * The relationship counts that should be eager loaded on every query.
-     *
-     * @var array
-     */
-    protected $withCount = ['members', 'channels'];
-
-    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
