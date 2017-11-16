@@ -2,9 +2,7 @@
 
 namespace Base\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
-
-class ThreadResource extends Resource
+class ThreadResource extends BaseResource
 {
     /**
      * Transform the resource into an array.

@@ -2,9 +2,7 @@
 
 namespace Base\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
-
-class MediaResource extends Resource
+class MediaResource extends BaseResource
 {
     /**
      * Transform the resource into an array.
