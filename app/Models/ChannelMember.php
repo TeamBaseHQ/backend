@@ -4,7 +4,7 @@ namespace Base;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ChannelMember extends Model
+class ChannelMember extends BaseModel
 {
     /**
      * The table associated with the model.

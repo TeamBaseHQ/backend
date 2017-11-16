@@ -4,7 +4,7 @@ namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Star extends Model
+class Star extends BaseModel
 {
     /**
      * The table associated with the model.

@@ -5,7 +5,7 @@ namespace Base\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Preference extends Model
+class Preference extends BaseModel
 {
     /**
      * The table associated with the model.

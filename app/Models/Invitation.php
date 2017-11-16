@@ -5,7 +5,7 @@ namespace Base\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Invitation extends Model
+class Invitation extends BaseModel
 {
     /**
      * The table associated with the model.

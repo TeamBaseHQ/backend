@@ -5,7 +5,7 @@ namespace Base\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
-class CustomPreference extends Model
+class CustomPreference extends BaseModel
 {
     /**
      * The table associated with the model.
