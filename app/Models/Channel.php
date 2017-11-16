@@ -33,6 +33,20 @@ class Channel extends BaseModel
     ];
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['owner'];
+
+    /**
+     * The relationship counts that should be eager loaded on every query.
+     *
+     * @var array
+     */
+    protected $withCount = ['members', 'threads'];
+
+    /**
      * Return the sluggable configuration array for this model.
      *
      * @return array
