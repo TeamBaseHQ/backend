@@ -19,6 +19,6 @@ class Star extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'message_id', 'user_id'
+        'message_id', 'user_id', 'team_id'
     ];
 }

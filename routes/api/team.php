@@ -6,6 +6,10 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
     Route::patch('/{slug}', ['as' => "update-team", 'uses' => "UpdateTeam"]);
     Route::delete('/{slug}', ['as' => "delete-team", 'uses' => "DeleteTeam"]);
 
+    Route::group(['prefix' => '/{slug}/starred-messages', 'namespace' => "Star"], function () {
+        Route::get('/', ['as' => "list-team-starred-messages", 'uses' => "ListStarredMessages"]);
+    });
+
     Route::group(['prefix' => '/{slug}/members', 'namespace' => "Member"], function () {
         Route::get('/', ['as' => "list-team-members", 'uses' => "ListTeamMembers"]);
         Route::post('/', ['as' => "add-team-member", 'uses' => "AddTeamMember"]);
@@ -40,6 +44,9 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
                 Route::get('/{mSlug}', ['as' => "show-thread-message", 'uses' => "ShowThreadMessage"]);
                 Route::patch('/{mSlug}', ['as' => "update-thread-message", 'uses' => "UpdateThreadMessage"]);
                 Route::delete('/{mSlug}', ['as' => "delete-thread-message", 'uses' => "DeleteThreadMessage"]);
+                // Star
+                Route::post('/{mSlug}/star', ['as' => "star-thread-message", 'uses' => "StarThreadMessage"]);
+                Route::delete('/{mSlug}/star', ['as' => "unstar-thread-message", 'uses' => "UnStarThreadMessage"]);
             });
         });
     });

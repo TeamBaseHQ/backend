@@ -36,7 +36,7 @@ class User extends Authenticatable implements HasMediaConversions
     ];
 
     protected $casts = [
-      "is_verified" => "boolean"
+        "is_verified" => "boolean"
     ];
 
     /**
@@ -111,6 +111,21 @@ class User extends Authenticatable implements HasMediaConversions
     public function starredMessages(): BelongsToMany
     {
         return $this->belongsToMany(Message::class, "stars", "user_id", "message_id")
+            ->withTimestamps();
+    }
+
+    /**
+     * Messages starred by the User in the given Team (ID).
+     *
+     * @param $team_id
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function starredMessagesInTeam($team_id): BelongsToMany
+    {
+        return $this->belongsToMany(Message::class, "stars", "user_id", "message_id")
+            ->withPivot("team_id")
+            ->where("team_id", $team_id)
             ->withTimestamps();
     }
 
