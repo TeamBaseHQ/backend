@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Team extends Model
+class Team extends BaseModel
 {
     use Sluggable;
+
 
     /**
      * The table associated with the model.
@@ -27,6 +28,20 @@ class Team extends Model
     protected $fillable = [
         'name', 'description', 'invitation_code', 'user_id'
     ];
+
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['owner'];
+
+    /**
+     * The relationship counts that should be eager loaded on every query.
+     *
+     * @var array
+     */
+    protected $withCount = ['members', 'channels'];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -72,6 +87,14 @@ class Team extends Model
     public function channels(): HasMany
     {
         return $this->hasMany(Channel::class, "team_id");
+    }
+
+    /**
+     * Team Threads.
+     */
+    public function threads()
+    {
+        return $this->hasManyThrough(Thread::class, Channel::class);
     }
 
     /**
