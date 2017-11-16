@@ -2,9 +2,7 @@
 
 namespace Base\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
-
-class ChannelCollection extends ResourceCollection
+class ChannelCollection extends BaseCollection
 {
     /**
      * Transform the resource collection into an array.

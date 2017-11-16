@@ -2,9 +2,7 @@
 
 namespace Base\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
-
-class MessageCollection extends ResourceCollection
+class MessageCollection extends BaseCollection
 {
     /**
      * Transform the resource collection into an array.

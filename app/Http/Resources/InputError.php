@@ -4,7 +4,7 @@ namespace Base\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class InputError extends Resource
+class InputError extends BaseResource
 {
     const ERROR_MESSAGE = "The given data was invalid.";
 

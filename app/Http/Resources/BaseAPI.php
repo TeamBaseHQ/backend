@@ -2,9 +2,7 @@
 
 namespace Base\Http\Resources;
 
-use Illuminate\Http\Resources\Json\Resource;
-
-class BaseAPI extends Resource
+class BaseAPI extends BaseResource
 {
     public function __construct($resource = null)
     {

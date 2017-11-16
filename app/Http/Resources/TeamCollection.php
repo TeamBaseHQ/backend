@@ -2,10 +2,9 @@
 
 namespace Base\Http\Resources;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
-
-class TeamCollection extends ResourceCollection
+class TeamCollection extends BaseCollection
 {
+
     /**
      * Transform the resource collection into an array.
      *
@@ -15,8 +14,6 @@ class TeamCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'data' => $this->collection
-        ];
+        return parent::toArray($request);
     }
 }
