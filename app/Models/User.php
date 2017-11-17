@@ -130,13 +130,13 @@ class User extends Authenticatable implements HasMediaConversions
     }
 
     /**
-     * User's Custom Preferences.
+     * User's Preferences.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function customPreferences(): MorphMany
+    public function preferences(): HasMany
     {
-        return $this->morphMany(CustomPreference::class, "owner");
+        return $this->hasMany(Preference::class, "user_id");
     }
 
     /**

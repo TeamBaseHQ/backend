@@ -3,6 +3,7 @@
 namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Preference extends BaseModel
@@ -20,26 +21,43 @@ class Preference extends BaseModel
      * @var array
      */
     protected $fillable = [
-        'name', 'data_type', 'default_value', 'preference_category_id'
+        "category",
+        "name",
+        "value",
+        "user_id",
     ];
 
     /**
-     * Preference's Category.
+     * Get the route name for the model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return string
      */
-    public function category()
+    public function getRouteKeyName()
     {
-        return $this->belongsTo(PreferenceCategory::class, "preference_category_id");
+        return "name";
     }
 
     /**
-     * Custom Preferences.
+     * User, the Preference belongs to.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function customPreferences(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany(CustomPreference::class, "preference_id");
+        return $this->belongsTo(User::class, "user_id");
+    }
+
+    /**
+     * Get Preference by Name for the given Team (ID).
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int|string                            $team_id
+     * @param string                                $name
+     *
+     * @return mixed
+     */
+    public function scopeForTeam($query, $team_id, $name)
+    {
+        return $query->where("name", "{$team_id}:{$name}");
     }
 }
