@@ -24,6 +24,13 @@ class Message extends BaseModel
     ];
 
     /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = ['sender'];
+
+    /**
      * The "booting" method of the model.
      *
      * @return void
