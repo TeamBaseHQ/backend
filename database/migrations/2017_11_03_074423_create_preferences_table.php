@@ -15,11 +15,11 @@ class CreatePreferencesTable extends Migration
     {
         Schema::create('preferences', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('category');
             $table->string('name');
-            $table->string('default_value')->nullable();
-            $table->string('data_type')->default('string');
-            $table->unsignedInteger('preference_category_id');
-            $table->foreign('preference_category_id')->references('id')->on('preference_categories')->onDelete('cascade');
+            $table->text('value');
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
