@@ -19,7 +19,8 @@ class ListTeamMembers extends APIController
 
         throw_if(!$team, (new ModelNotFoundException())->setModel(Team::class, $slug));
 
-        $members = $team->members;
+        $members = $team->members()
+            ->paginate($request->get('limit', 15));
 
         return new UserCollection($members);
     }

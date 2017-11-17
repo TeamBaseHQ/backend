@@ -27,7 +27,8 @@ class ListChannelMembers extends APIController
 
         throw_if(!$channel, (new ModelNotFoundException())->setModel(Channel::class, $chSlug));
 
-        $members = $channel->members;
+        $members = $channel->members()
+            ->paginate($request->get('limit', 15));
 
         return new UserCollection($members);
     }

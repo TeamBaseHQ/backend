@@ -27,7 +27,8 @@ class ListChannelThreads extends APIController
 
         throw_if(!$channel, (new ModelNotFoundException())->setModel(Channel::class, $chSlug));
 
-        $threads = $channel->threads;
+        $threads = $channel->threads()
+            ->paginate($request->get('limit', 15));
 
         return new ThreadCollection($threads);
     }

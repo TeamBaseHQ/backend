@@ -40,7 +40,7 @@ class ListThreadMessages extends APIController
         $messages = $thread
             ->messages()
             ->latest()
-            ->paginate($request->get('limit', 10));
+            ->paginate($request->get('limit', 15));
 
         return new MessageCollection($messages);
     }

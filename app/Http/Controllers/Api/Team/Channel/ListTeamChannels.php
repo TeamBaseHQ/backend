@@ -19,7 +19,8 @@ class ListTeamChannels extends APIController
 
         throw_if(!$team, (new ModelNotFoundException())->setModel(Team::class, $slug));
 
-        $channels = $team->channels;
+        $channels = $team->channels()
+            ->paginate($request->get('limit', 15));
 
         return new ChannelCollection($channels);
     }
