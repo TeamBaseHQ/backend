@@ -10,6 +10,10 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
         Route::get('/', ['as' => "list-team-starred-messages", 'uses' => "ListStarredMessages"]);
     });
 
+    Route::group(['prefix' => '/{slug}/invitations', 'namespace' => "Invite"], function () {
+        Route::post('/', ['as' => "send-team-invitation", 'uses' => "SendInvitation"]);
+    });
+
     Route::group(['prefix' => '/{slug}/members', 'namespace' => "Member"], function () {
         Route::get('/', ['as' => "list-team-members", 'uses' => "ListTeamMembers"]);
         Route::post('/', ['as' => "add-team-member", 'uses' => "AddTeamMember"]);
