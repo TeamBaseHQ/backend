@@ -18,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'Base\Events\Team\TeamWasCreated' => [
         ],
+        'Base\Events\Team\Invite\InvitationWasCreated' => [
+            'Base\Listeners\Team\Invite\SendInvitationEmail',
+        ],
     ];
 
     /**
