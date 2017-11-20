@@ -13,6 +13,7 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
     Route::group(['prefix' => '/{slug}/invitations', 'namespace' => "Invite"], function () {
         Route::get('/', ['as' => "list-team-invitations", 'uses' => "ListInvitations"]);
         Route::post('/', ['as' => "send-team-invitation", 'uses' => "SendInvitation"]);
+        Route::delete('/{id}', ['as' => "cancel-team-invitation", 'uses' => "CancelInvitation"]);
     });
 
     Route::group(['prefix' => '/{slug}/members', 'namespace' => "Member"], function () {
