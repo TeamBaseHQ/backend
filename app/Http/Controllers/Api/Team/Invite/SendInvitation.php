@@ -5,6 +5,7 @@ namespace Base\Http\Controllers\Api\Team\Invite;
 use Base\Events\Team\Invite\InvitationWasCreated;
 use Base\Http\Resources\InputError;
 use Base\Models\Team;
+use Base\Models\User;
 use Illuminate\Http\Request;
 use Base\Http\Controllers\Api\APIController;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -30,6 +31,20 @@ class SendInvitation extends APIController
 
         if (!$team) {
             throw (new ModelNotFoundException())->setModel(Team::class, $slug);
+        }
+
+        $existingUser = User::where('email', $email)
+            ->first();
+
+        if ($existingUser) {
+            $existingTeamMember = $existingUser
+                ->teams()
+                ->where("team_id", $team->id)
+                ->count();
+
+            if ($existingTeamMember) {
+                return InputError::build(["email" => ["A User with this email is already a member of this team."]]);
+            }
         }
 
         $existingInvitation = $team
