@@ -53,7 +53,7 @@ return [
             'key' => env('AWS_KEY'),
             'secret' => env('AWS_SECRET'),
             'prefix' => 'https://sqs.' . env('AWS_REGION') . '.amazonaws.com/591970446015',
-            'queue' => 'base-app-queue',
+            'queue' => 'default',
             'region' => env('AWS_REGION'),
         ],
 
