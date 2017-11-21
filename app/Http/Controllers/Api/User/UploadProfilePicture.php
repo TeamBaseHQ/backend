@@ -21,6 +21,13 @@ class UploadProfilePicture extends APIController
             ->usingFileName($fileName)
             ->toMediaCollection('profile_picture');
 
+        // Delete all profile pictures
+        $existing = $user->getMedia('profile_picture')->first();
+
+        if ($existing) {
+            $existing->delete();
+        }
+
         return new MediaResource($picture);
     }
 }
