@@ -39,6 +39,10 @@ class User extends Authenticatable implements HasMediaConversions
         "is_verified" => "boolean"
     ];
 
+    protected $with = [
+        'media'
+    ];
+
     /**
      * Teams created by the User.
      *
