@@ -48,7 +48,7 @@ return [
         /*
          * The domain that should be prepended when generating urls.
          */
-        'domain' => 'https://d1u5hgvrxvmb7z.cloudfront.net/',
+        'domain' => env('AWS_CLOUDFRONT_DOMAIN'),
     ],
 
     'remote' => [
