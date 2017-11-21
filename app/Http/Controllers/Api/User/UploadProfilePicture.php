@@ -12,7 +12,13 @@ class UploadProfilePicture extends APIController
     {
         $user = request()->user();
 
-        $picture = $user->addMediaFromRequest('file')
+        $name = str_random(10) . '-' . time();
+        $fileName = "{$name}.jpg";
+
+        $picture = $user
+            ->addMediaFromRequest('file')
+            ->usingName($name)
+            ->usingFileName($fileName)
             ->toMediaCollection('profile_picture');
 
         return new MediaResource($picture);
