@@ -18,9 +18,6 @@ class MediaResource extends BaseResource
         // Remove unwanted properties
         array_forget($data, ['model_id', 'model_type', 'order_column', 'disk']);
 
-        // Load the related Model
-        $data['model'] = $this->resource->model;
-
         return array_merge($data, [
             'url' => $this->getUrlsForAllConversions()
         ]);

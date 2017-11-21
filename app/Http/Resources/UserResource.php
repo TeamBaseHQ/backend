@@ -11,10 +11,16 @@ class UserResource extends BaseResource
      *
      * @param  \Illuminate\Http\Request
      * @param mixed $request
+     *
      * @return array
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        $data = parent::toArray($request);
+        array_forget($data, ['media']);
+
+        return array_merge($data, [
+            'picture' => new MediaResource($this->resource->media->first()),
+        ]);
     }
 }
