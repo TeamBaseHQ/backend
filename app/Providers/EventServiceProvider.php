@@ -21,9 +21,12 @@ class EventServiceProvider extends ServiceProvider
         'Base\Events\Team\Invite\InvitationWasCreated' => [
             'Base\Listeners\Team\Invite\SendInvitationEmail',
         ],
-        'Base\Events\Team\Channel\Thread\MessageWasSent' => [
-            //
-        ],
+        'Base\Events\Team\Channel\ChannelWasCreated' => [],
+        'Base\Events\Team\Channel\ChannelWasUpdated' => [],
+        'Base\Events\Team\Channel\ChannelWasDeleted' => [],
+        'Base\Events\Team\Channel\ChannelMemberWasAdded' => [],
+        'Base\Events\Team\Channel\ChannelMemberWasRemoved' => [],
+        'Base\Events\Team\Channel\Thread\MessageWasSent' => [],
     ];
 
     /**
