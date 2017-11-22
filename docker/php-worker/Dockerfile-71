@@ -56,6 +56,11 @@ RUN set -ex \
     && apk add --no-cache --virtual .imagick-runtime-deps imagemagick \
     && apk del .phpize-deps
 
+RUN curl -o ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-64bit-static.tar.xz \
+    && tar xf ffmpeg.tar.xz \
+    && mv ./ffmpeg-3.4-64bit-static/* /bin
+
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
