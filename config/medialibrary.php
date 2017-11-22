@@ -113,6 +113,6 @@ return [
      * thumbnails and have installed the php-ffmpeg/php-ffmpeg composer
      * dependency.
      */
-    'ffmpeg_binaries' => '/usr/bin/ffmpeg',
-    'ffprobe_binaries' => '/usr/bin/ffprobe',
+    'ffmpeg_binaries' => '/bin/ffmpeg',
+    'ffprobe_binaries' => '/bin/ffprobe',
 ];
