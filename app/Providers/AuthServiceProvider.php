@@ -31,9 +31,6 @@ class AuthServiceProvider extends ServiceProvider
         // Register Routes
         Passport::routes();
 
-        // Broadcast Routes
-        Broadcast::routes();
-
         // Access Tokens expire in 1 day
         Passport::tokensExpireIn(Carbon::now()->addDay());
 

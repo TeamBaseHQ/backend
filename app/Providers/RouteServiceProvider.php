@@ -2,6 +2,7 @@
 
 namespace Base\Providers;
 
+use Broadcast;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -39,7 +40,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        // Broadcast Routes
+        Broadcast::routes(['prefix' => "api", 'middleware' => ['api']]);
     }
 
     /**
