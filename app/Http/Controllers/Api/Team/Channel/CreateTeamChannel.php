@@ -2,6 +2,7 @@
 
 namespace Base\Http\Controllers\Api\Team\Channel;
 
+use Base\Events\Team\Channel\ChannelWasCreated;
 use Base\Models\Team;
 use Base\Models\Channel;
 use Base\Http\Resources\ChannelResource;
@@ -34,6 +35,8 @@ class CreateTeamChannel extends APIController
 
         // Add the creator as a Channel Member
         $channel->members()->attach($user->id);
+
+        broadcast(new ChannelWasCreated($channel, $team))->toOthers();
 
         return new ChannelResource($channel);
     }
