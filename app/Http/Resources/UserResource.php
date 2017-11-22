@@ -19,7 +19,7 @@ class UserResource extends BaseResource
         $data = parent::toArray($request);
         array_forget($data, ['media']);
 
-        $media = $this->resource->media->first();
+        $media = $this->resource->getMedia('profile_picture')->first();
         if ($media) {
             $media = (new MediaResource($media))->toArray($request);
         }
