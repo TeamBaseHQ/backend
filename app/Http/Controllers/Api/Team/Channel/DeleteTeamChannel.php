@@ -2,6 +2,7 @@
 
 namespace Base\Http\Controllers\Api\Team\Channel;
 
+use Base\Events\Team\Channel\ChannelWasDeleted;
 use Base\Models\Channel;
 use Base\Models\Team;
 use Illuminate\Http\Request;
@@ -37,6 +38,8 @@ class DeleteTeamChannel extends APIController
         $deleted = $channel->delete();
 
         abort_unless($deleted, 500, "You cannot delete this channel.");
+
+        broadcast(new ChannelWasDeleted($chSlug, $team))->toOthers();
 
         return response("");
     }
