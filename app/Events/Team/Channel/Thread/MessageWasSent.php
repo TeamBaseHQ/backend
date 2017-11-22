@@ -56,7 +56,7 @@ class MessageWasSent implements ShouldBroadcast
     {
         $channelLine = 'channel.' . $this->channel->slug;
 
-        return new PrivateChannel($channelLine);
+        return new \Illuminate\Broadcasting\Channel($channelLine);
     }
 
     public function broadcastWith()
