@@ -2,6 +2,7 @@
 
 namespace Base\Http\Controllers\Api\Team\Channel\Member;
 
+use Base\Events\Team\Channel\ChannelMemberWasAdded;
 use Base\Http\Resources\InputError;
 use Base\Models\Team;
 use Illuminate\Http\Request;
@@ -27,6 +28,7 @@ class AddChannelMember extends APIController
         throw_if(!$channel, (new ModelNotFoundException())->setModel(Channel::class, $chSlug));
 
         $user_id = $request->get("user_id");
+        $userToAdd = User::findOrFail($user_id);
 
         // If the Channel is Private
         if ($channel->isPrivate()) {
@@ -44,6 +46,8 @@ class AddChannelMember extends APIController
 
         // Add User to the Channel
         $channel->members()->attach($user_id);
+
+        broadcast(new ChannelMemberWasAdded($userToAdd, $channel, $team));
 
         return response("");
     }
