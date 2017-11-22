@@ -29,6 +29,7 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
         Route::get('/{chSlug}', ['as' => "show-team-channel", 'uses' => "ShowTeamChannel"]);
         Route::patch('/{chSlug}', ['as' => "update-team-channel", 'uses' => "UpdateTeamChannel"]);
         Route::delete('/{chSlug}', ['as' => "delete-team-channel", 'uses' => "DeleteTeamChannel"]);
+        Route::post('/{chSlug}/media', ['as' => "upload-team-channel-media", 'uses' => "UploadMedia"]);
 
         Route::group(['prefix' => '/{chSlug}/members', 'namespace' => "Member"], function () {
             Route::post('/', ['as' => "add-channel-member", 'uses' => "AddChannelMember"]);
