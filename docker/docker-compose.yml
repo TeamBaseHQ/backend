@@ -114,6 +114,10 @@ services:
         - applications
       depends_on:
         - workspace
+      dns: 8.8.8.8
+      dns_opt:
+        - use-vc
+        - no-tld-query
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       networks:
