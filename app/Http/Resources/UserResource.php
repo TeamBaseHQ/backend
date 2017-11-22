@@ -19,8 +19,13 @@ class UserResource extends BaseResource
         $data = parent::toArray($request);
         array_forget($data, ['media']);
 
+        $media = $this->resource->media->first();
+        if ($media) {
+            $media = (new MediaResource($media))->toArray($request);
+        }
+
         return array_merge($data, [
-            'picture' => new MediaResource($this->resource->media->first()),
+            'picture' => $this->when(!is_null($media), $media),
         ]);
     }
 }
