@@ -2,6 +2,7 @@
 
 namespace Base\Http\Controllers\Api\Team\Channel\Thread\Message;
 
+use Base\Events\Team\Channel\Thread\MessageWasSent;
 use Base\Models\Team;
 use Base\Models\Thread;
 use Base\Models\Channel;
@@ -44,6 +45,8 @@ class CreateThreadMessage extends APIController
         $message = $user
             ->messages()
             ->create($data);
+
+        broadcast(new MessageWasSent($channel, $thread, $message));
 
         return new MessageResource($message);
     }
