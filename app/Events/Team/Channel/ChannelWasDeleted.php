@@ -3,9 +3,9 @@
 namespace Base\Events\Team\Channel;
 
 use Base\Models\Team;
+use Illuminate\Broadcasting\Channel;
 use Base\Http\Resources\TeamResource;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -47,7 +47,7 @@ class ChannelWasDeleted implements ShouldBroadcast
     {
         $channelLine = 'channel.' . $this->channelSlug;
         info("KUNNU: " . $channelLine);
-        return new PrivateChannel($channelLine);
+        return new Channel($channelLine);
     }
 
     public function broadcastWith()

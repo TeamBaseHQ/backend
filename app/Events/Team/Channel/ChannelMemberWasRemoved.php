@@ -2,14 +2,13 @@
 
 namespace Base\Events\Team\Channel;
 
-use Base\Http\Resources\UserResource;
 use Base\Models\Team;
 use Base\Models\User;
 use Base\Models\Channel;
 use Base\Http\Resources\TeamResource;
+use Base\Http\Resources\UserResource;
 use Illuminate\Queue\SerializesModels;
 use Base\Http\Resources\ChannelResource;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -56,7 +55,7 @@ class ChannelMemberWasRemoved implements ShouldBroadcast
     {
         $channelName = 'channel.' . $this->channel->slug;
 
-        return new PrivateChannel($channelName);
+        return new \Illuminate\Broadcasting\Channel($channelName);
     }
 
     public function broadcastWith()

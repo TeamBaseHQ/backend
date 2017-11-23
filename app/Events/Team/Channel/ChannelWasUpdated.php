@@ -47,7 +47,7 @@ class ChannelWasUpdated implements ShouldBroadcast
     {
         $channelName = 'channel.' . $this->channel->slug;
 
-        return new PrivateChannel($channelName);
+        return new \Illuminate\Broadcasting\Channel($channelName);
     }
 
     public function broadcastWith()

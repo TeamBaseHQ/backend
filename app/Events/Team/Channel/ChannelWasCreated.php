@@ -2,12 +2,11 @@
 
 namespace Base\Events\Team\Channel;
 
-use Base\Http\Resources\ChannelResource;
-use Base\Http\Resources\TeamResource;
 use Base\Models\Team;
 use Base\Models\Channel;
+use Base\Http\Resources\TeamResource;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
+use Base\Http\Resources\ChannelResource;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -52,7 +51,7 @@ class ChannelWasCreated implements ShouldBroadcast
             $channelName = 'user.' . $this->team->slug;
         }
 
-        return new PrivateChannel($channelName);
+        return new \Illuminate\Broadcasting\Channel($channelName);
     }
 
     public function broadcastWith()
