@@ -45,13 +45,8 @@ class UploadMedia extends APIController
         $mediaCollection = collect([]);
 
         foreach ($fileCollection as $media) {
-            $name = str_random(10) . '-' . time();
-            $fileName = "{$name}.jpg";
 
             $mediaObj = $media
-                ->usingName($name)
-                ->usingFileName($fileName)
-                ->preservingOriginal()
                 ->toMediaCollection('channel_media');
 
             $mediaCollection->push($mediaObj);

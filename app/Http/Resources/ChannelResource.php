@@ -15,6 +15,7 @@ class ChannelResource extends BaseResource
     {
         return array_merge(parent::toArray($request), [
             "owner" => new UserResource($this->resource->owner),
+            "team" => $this->whenLoaded('team'),
         ]);
     }
 }

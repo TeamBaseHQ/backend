@@ -3,14 +3,13 @@
 namespace Base\Models;
 
 use Base\Helpers;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\Media;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
-use Spatie\MediaLibrary\Media;
 
 class Channel extends BaseModel implements HasMediaConversions
 {

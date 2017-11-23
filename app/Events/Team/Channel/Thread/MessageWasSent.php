@@ -63,6 +63,9 @@ class MessageWasSent implements ShouldBroadcast
     {
         $message = (new MessageResource($this->message))->toArray(request());
         $message['thread'] = (new ThreadResource($this->thread))->toArray(request());
+
+        // Load the team
+        $this->channel->load('team');
         $message['thread']['channel'] = (new ChannelResource($this->channel))->toArray(request());
 
         return $message;

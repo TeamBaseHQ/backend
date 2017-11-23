@@ -38,11 +38,13 @@ abstract class Helpers
             $mediaConversion = $model->addMediaConversion($name);
 
             foreach ($conversion as $prop => $value) {
-                $mediaConversion->{$prop}($value);
+                $mediaConversion = $mediaConversion->{$prop}($value);
             }
 
+            $mediaConversion = $mediaConversion->extractVideoFrameAtSecond(05);
+
             if ($collections) {
-                $mediaConversion->performOnCollections(...$collections);
+                $mediaConversion = $mediaConversion->performOnCollections(...$collections);
             }
         }
     }

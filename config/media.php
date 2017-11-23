@@ -31,6 +31,11 @@ return [
                     'height' => 100,
                     'quality' => 70,
                 ],
+                'medium' => [
+                    'width' => 160,
+                    'height' => 160,
+                    'quality' => 70,
+                ],
             ]
         ]
     ]

@@ -30,10 +30,14 @@ class MediaResource extends BaseResource
      */
     protected function getUrlsForAllConversions()
     {
-        // [ 'icon', 'thumb', 'medium', 'large' ]
-        return collect($this->resource->getMediaConversionNames())
+        // [ 'icon', 'thumb', 'medium', 'large', 'original' ]
+        $conversions = collect($this->resource->getMediaConversionNames())
             ->mapWithKeys(function ($conversionName) {
                 return [$conversionName => $this->resource->getFullUrl($conversionName)];
             })->toArray();
+
+        return array_merge($conversions, [
+            'original' => $this->resource->getFullUrl(),
+        ]);
     }
 }
