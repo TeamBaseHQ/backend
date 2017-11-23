@@ -39,7 +39,7 @@ class UploadMedia extends APIController
 
         throw_if(!$channel, (new ModelNotFoundException())->setModel(Channel::class, $chSlug));
 
-        $fileCollection = $currentUser
+        $fileCollection = $channel
             ->addAllMediaFromRequest();
 
         $mediaCollection = collect([]);
@@ -51,7 +51,8 @@ class UploadMedia extends APIController
             $mediaObj = $media
                 ->usingName($name)
                 ->usingFileName($fileName)
-                ->toMediaCollection($chSlug);
+                ->preservingOriginal()
+                ->toMediaCollection('channel_media');
 
             $mediaCollection->push($mediaObj);
         }

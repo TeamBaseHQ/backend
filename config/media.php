@@ -2,7 +2,7 @@
 
 return [
     'conversions' => [
-        'display_picture' => [
+        'profile_picture' => [
             'small' => [
                 'width' => 40,
                 'height' => 40,
@@ -23,6 +23,15 @@ return [
                 'height' => 220,
                 'quality' => 70,
             ],
+        ],
+        'media' => [
+            'pictures' => [
+                'thumb' => [
+                    'width' => 100,
+                    'height' => 100,
+                    'quality' => 70,
+                ],
+            ]
         ]
     ]
 ];

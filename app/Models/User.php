@@ -150,7 +150,7 @@ class User extends Authenticatable implements HasMediaConversions
      */
     public function registerMediaConversions(Media $media = null)
     {
-        $conversions = config('media.conversions.display_picture');
-        Helpers::registerConversions($this, $conversions);
+        $conversions = config('media.conversions.profile_picture');
+        Helpers::registerConversions($this, $conversions, ['profile_picture']);
     }
 }

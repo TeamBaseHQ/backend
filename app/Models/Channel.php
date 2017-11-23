@@ -2,15 +2,19 @@
 
 namespace Base\Models;
 
+use Base\Helpers;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
+use Spatie\MediaLibrary\Media;
 
-class Channel extends BaseModel
+class Channel extends BaseModel implements HasMediaConversions
 {
-    use Sluggable;
+    use Sluggable, HasMediaTrait;
 
     const TYPE_PUBLIC = "public";
 
@@ -103,5 +107,11 @@ class Channel extends BaseModel
     public function threads(): HasMany
     {
         return $this->hasMany(Thread::class, "channel_id");
+    }
+
+    public function registerMediaConversions(Media $media = null)
+    {
+        $conversions = config('media.conversions.media.pictures');
+        Helpers::registerConversions($this, $conversions, ['channel_media']);
     }
 }

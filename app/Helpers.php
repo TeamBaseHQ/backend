@@ -30,14 +30,19 @@ abstract class Helpers
      *
      * @param \Illuminate\Database\Eloquent\Model $model
      * @param array                               $conversions
+     * @param null                                $collections
      */
-    public static function registerConversions(Model $model, array $conversions)
+    public static function registerConversions(Model $model, array $conversions, $collections = null)
     {
         foreach ($conversions as $name => $conversion) {
             $mediaConversion = $model->addMediaConversion($name);
 
             foreach ($conversion as $prop => $value) {
                 $mediaConversion->{$prop}($value);
+            }
+
+            if ($collections) {
+                $mediaConversion->performOnCollections(...$collections);
             }
         }
     }
