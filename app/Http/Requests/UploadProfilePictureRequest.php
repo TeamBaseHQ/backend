@@ -24,7 +24,7 @@ class UploadProfilePictureRequest extends FormRequest
     public function rules()
     {
         return [
-            'file' => "mimes:jpeg,png,gif"
+            'file' => "mimes:jpeg,png,gif|max:2000"
         ];
     }
 }
