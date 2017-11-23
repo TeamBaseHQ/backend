@@ -23,10 +23,15 @@ class MessageResource extends BaseResource
         }
 
         $attachments = $this->resource->attachments;
+        $hasAttachments = ($attachments && $attachments->count());
+
+        if ($hasAttachments) {
+            $attachments = new MediaCollection($attachments);
+        }
 
         return array_merge(parent::toArray($request), [
             "sender" => $sender,
-            "attachments" => $this->when($attachments && count($attachments), new MediaCollection($attachments)),
+            "attachments" => $this->when($hasAttachments, $attachments),
         ]);
     }
 
