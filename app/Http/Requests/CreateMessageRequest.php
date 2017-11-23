@@ -24,7 +24,8 @@ class CreateMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' => "bail|required|"
+            'content' => "bail|required|",
+            'media_ids.*' => 'bail|exists:media,id',
         ];
     }
 }
