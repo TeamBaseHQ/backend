@@ -20,6 +20,10 @@ class UploadMedia extends APIController
      */
     public function __invoke(UploadMediaRequest $request, $slug, $chSlug)
     {
+        if ($request->files->count() < 1) {
+            abort(400, "No file(s) selected.");
+        }
+
         $currentUser = $request->user();
 
         $team = $currentUser
