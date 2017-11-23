@@ -46,6 +46,13 @@ class CreateThreadMessage extends APIController
             ->messages()
             ->create($data);
 
+        $mediaIds = $request->get('media_ids');
+
+        if ($mediaIds) {
+            $message->attachments()->attach($mediaIds);
+            $message->loadMissing(['attachments']);
+        }
+
         broadcast(new MessageWasSent($channel, $thread, $message));
 
         return new MessageResource($message);
