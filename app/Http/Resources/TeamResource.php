@@ -18,8 +18,18 @@ class TeamResource extends BaseResource
      */
     public function toArray($request)
     {
-        return array_merge(parent::toArray($request), [
+        $data = parent::toArray($request);
+        array_forget($data, ['media']);
+
+        $media = $this->resource->getMedia('team_picture')->first();
+
+        if ($media) {
+            $media = (new MediaResource($media))->toArray($request);
+        }
+
+        return array_merge($data, [
             "owner" => new UserResource($this->resource->owner),
+            'picture' => $this->when(!is_null($media), $media),
         ]);
     }
 }
