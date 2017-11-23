@@ -2,15 +2,19 @@
 
 namespace Base\Models;
 
+use Base\Helpers;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMediaConversions;
+use Spatie\MediaLibrary\Media;
 
-class Team extends BaseModel
+class Team extends BaseModel implements HasMediaConversions
 {
-    use Sluggable;
+    use Sluggable, HasMediaTrait;
 
 
     /**
@@ -34,7 +38,10 @@ class Team extends BaseModel
      *
      * @var array
      */
-    protected $with = ['owner'];
+    protected $with = [
+        'owner',
+        'media'
+    ];
 
     /**
      * Return the sluggable configuration array for this model.
@@ -98,5 +105,16 @@ class Team extends BaseModel
     public function invitations(): HasMany
     {
         return $this->hasMany(Invitation::class, "team_id");
+    }
+
+    /**
+     * Register Media Conversions.
+     *
+     * @param \Spatie\MediaLibrary\Media|null $media
+     */
+    public function registerMediaConversions(Media $media = null)
+    {
+        $conversions = config('media.conversions.profile_picture');
+        Helpers::registerConversions($this, $conversions, ['team_picture']);
     }
 }
