@@ -53,7 +53,7 @@ class CreateThreadMessage extends APIController
             $message->loadMissing(['attachments']);
         }
 
-        broadcast(new MessageWasSent($channel, $thread, $message));
+        broadcast(new MessageWasSent($channel, $thread, $message))->toOthers();
 
         return new MessageResource($message);
     }
