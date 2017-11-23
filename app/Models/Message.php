@@ -3,6 +3,7 @@
 namespace Base\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Message extends BaseModel
@@ -28,7 +29,7 @@ class Message extends BaseModel
      *
      * @var array
      */
-    protected $with = ['sender'];
+    protected $with = ['sender', 'attachments'];
 
     /**
      * The "booting" method of the model.
@@ -62,5 +63,18 @@ class Message extends BaseModel
     public function sender(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Messages starred by the User.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function attachments(): BelongsToMany
+    {
+        return $this
+            ->belongsToMany(Media::class, "attachments", "message_id", "media_id")
+            ->using(Attachment::class)
+            ->withTimestamps();
     }
 }
