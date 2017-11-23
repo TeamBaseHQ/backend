@@ -22,6 +22,6 @@ class MediaPathGenerator implements PathGenerator
 
     public function getPath(Media $media): string
     {
-        return $media->name . '/';
+        return md5($media->id . "-" . $media->name) . '/';
     }
 }
