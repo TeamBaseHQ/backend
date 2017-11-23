@@ -3,6 +3,7 @@
 namespace Base\Http\Resources;
 
 use Base\Models\User;
+use Illuminate\Http\Resources\MissingValue;
 
 class MessageResource extends BaseResource
 {
@@ -20,8 +21,12 @@ class MessageResource extends BaseResource
         } else {
             $sender = new UserResource($this->resource->sender);
         }
+
+        $attachments = $this->resource->attachments;
+
         return array_merge(parent::toArray($request), [
             "sender" => $sender,
+            "attachments" => $this->when($attachments && count($attachments), new MediaCollection($attachments)),
         ]);
     }
 
