@@ -5,6 +5,7 @@ Route::group(['prefix' => 'teams', 'namespace' => "Team", 'middleware' => ["auth
     Route::get('/{slug}', ['as' => "show-team", 'uses' => "ShowTeam"]);
     Route::patch('/{slug}', ['as' => "update-team", 'uses' => "UpdateTeam"]);
     Route::delete('/{slug}', ['as' => "delete-team", 'uses' => "DeleteTeam"]);
+    Route::post('/{slug}/picture', ['as' => "upload-team-picture", 'uses' => "UploadTeamPicture"]);
 
     Route::group(['prefix' => '/{slug}/starred-messages', 'namespace' => "Star"], function () {
         Route::get('/', ['as' => "list-team-starred-messages", 'uses' => "ListStarredMessages"]);
