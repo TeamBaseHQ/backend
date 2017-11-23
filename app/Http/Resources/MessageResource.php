@@ -22,17 +22,16 @@ class MessageResource extends BaseResource
             $sender = new UserResource($this->resource->sender);
         }
 
+        $data = array_merge(parent::toArray($request), ["sender" => $sender]);
         $attachments = $this->resource->attachments;
-        $hasAttachments = ($attachments && $attachments->count());
 
-        if ($hasAttachments) {
-            $attachments = new MediaCollection($attachments);
+        if ($attachments && $attachments->count()) {
+            $data["attachments"] = new MediaCollection($attachments);
+        } else {
+            array_forget($data, ["attachments"]);
         }
 
-        return array_merge(parent::toArray($request), [
-            "sender" => $sender,
-            "attachments" => $this->when($hasAttachments, $attachments),
-        ]);
+        return $data;
     }
 
     private function sentByUser()
