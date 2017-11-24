@@ -6,22 +6,22 @@ return [
             'small' => [
                 'width' => 40,
                 'height' => 40,
-                'quality' => 70,
+                'quality' => 85,
             ],
             'thumb' => [
                 'width' => 100,
                 'height' => 100,
-                'quality' => 70,
+                'quality' => 85,
             ],
             'medium' => [
                 'width' => 160,
                 'height' => 160,
-                'quality' => 70,
+                'quality' => 85,
             ],
             'large' => [
                 'width' => 220,
                 'height' => 220,
-                'quality' => 70,
+                'quality' => 85,
             ],
         ],
         'media' => [
@@ -29,12 +29,12 @@ return [
                 'thumb' => [
                     'width' => 100,
                     'height' => 100,
-                    'quality' => 70,
+                    'quality' => 85,
                 ],
                 'medium' => [
                     'width' => 160,
                     'height' => 160,
-                    'quality' => 70,
+                    'quality' => 85,
                 ],
             ]
         ]
